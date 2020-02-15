@@ -1,0 +1,15 @@
+bin/cake bake migration CreateUsers user_name:string[30] first_name:string[30] last_name:string[30] password:string[30] role:string[30] active:boolean create_date:datetime modified_date:datetime
+bin/cake bake migration CreateTests name:string[50] description:string[500]
+bin/cake bake migration CreateUsers_Tests url_app:string max_date:datetime message:string[250]
+
+
+
+
+
+
+
+
+Cambios:
+    id de users es user_name
+    tamaño de password es 30
+    active es de tipo booleano
