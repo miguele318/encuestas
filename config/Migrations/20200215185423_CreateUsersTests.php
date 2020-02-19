@@ -29,14 +29,14 @@ class CreateUsersTests extends AbstractMigration
             'limit' => 250,
             'null' => false,
         ]);
-        $table->addColumn('user_name', 'string', [
+        $table->addColumn('username', 'string', [
             'default' => null,
             'limit' => 50,
             'null' => false,
         ]);
         $table->addColumn('test_id','integer',["limit"=>11]);
 
-        $table->addForeignKey("user_name","users","user_name",["delete"=> "CASCADE", "update"=>"CASCADE"]);
+        $table->addForeignKey("username","users","username",["delete"=> "CASCADE", "update"=>"CASCADE"]);
         $table->addForeignKey("test_id","tests","id",["delete"=> "CASCADE", "update"=>"CASCADE"]);
         
         $table->create();

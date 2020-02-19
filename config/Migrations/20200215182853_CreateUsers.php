@@ -14,8 +14,8 @@ class CreateUsers extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('users', ["id"=>false, "primary_key"=>"user_name"]);
-        $table->addColumn('user_name', 'string', [
+        $table = $this->table('users', ["id"=>false, "primary_key"=>"username"]);
+        $table->addColumn('username', 'string', [
             'default' => null,
             'limit' => 30,
             'null' => false,
@@ -32,14 +32,11 @@ class CreateUsers extends AbstractMigration
         ]);
         $table->addColumn('password', 'string', [
             'default' => null,
-            'limit' => 30,
+            'limit' => 300,
             'null' => false,
         ]);
-        $table->addColumn('role', 'string', [
-            'default' => null,
-            'limit' => 30,
-            'null' => false,
-        ]);
+        $table->addColumn('role', 'enum',array ('values'=>['admin','user'])
+        );
         $table->addColumn('active', 'boolean', [
             'default' => null,
             'null' => false,
