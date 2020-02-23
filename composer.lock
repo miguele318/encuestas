@@ -1654,16 +1654,16 @@
     "packages-dev": [
         {
             "name": "cakephp/bake",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "113502b5687026adf158fde3132354f4dcd49ed4"
+                "reference": "16aaca7700dce014b4de67a6ec2b0d8b21da44f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/113502b5687026adf158fde3132354f4dcd49ed4",
-                "reference": "113502b5687026adf158fde3132354f4dcd49ed4",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/16aaca7700dce014b4de67a6ec2b0d8b21da44f8",
+                "reference": "16aaca7700dce014b4de67a6ec2b0d8b21da44f8",
                 "shasum": ""
             },
             "require": {
@@ -1698,7 +1698,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2020-01-06T15:41:13+00:00"
+            "time": "2020-02-20T03:48:17+00:00"
         },
         {
             "name": "cakephp/cakephp-codesniffer",
@@ -2459,16 +2459,16 @@
         },
         {
             "name": "m1/env",
-            "version": "2.1.2",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/m1/Env.git",
-                "reference": "294addeedf15e1149eeb96ec829f2029d2017d39"
+                "reference": "5c296e3e13450a207e12b343f3af1d7ab569f6f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/m1/Env/zipball/294addeedf15e1149eeb96ec829f2029d2017d39",
-                "reference": "294addeedf15e1149eeb96ec829f2029d2017d39",
+                "url": "https://api.github.com/repos/m1/Env/zipball/5c296e3e13450a207e12b343f3af1d7ab569f6f3",
+                "reference": "5c296e3e13450a207e12b343f3af1d7ab569f6f3",
                 "shasum": ""
             },
             "require": {
@@ -2513,7 +2513,7 @@
                 "parser",
                 "support"
             ],
-            "time": "2018-06-19T18:55:08+00:00"
+            "time": "2020-02-19T09:02:13+00:00"
         },
         {
             "name": "myclabs/deep-copy",

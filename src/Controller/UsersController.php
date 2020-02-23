@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use  App\Controller\AppController;
 
 /**
  * Users Controller
@@ -19,14 +20,8 @@ class UsersController extends AppController
     public function index()
     {
 
-        echo' lista de usuarios';
-        exit();
-
-
-       
-        //$users = $this->Users-$this->find('all');
-
-        //$this->set('users',$users);
+        $users = $this->paginate($this->Users);
+        $this->set('users', $users);
         
     }
 

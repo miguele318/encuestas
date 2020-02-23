@@ -31,12 +31,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
 
    
-    <?= $this->Html->css('bootstrap.min') ?>
-    <?= $this->Html->script('jquery.js') ?>
-    <?= $this->Html->script('bootstrap.min') ?>
+    
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('bootstrap/bootstrap.min') ?>
+    <?= $this->Html->script('jquery/jquery.js') ?>
+    <?= $this->Html->script('bootstrap/bootstrap.min') ?>
 </head>
 <body>
     <nav class="top-nav">
