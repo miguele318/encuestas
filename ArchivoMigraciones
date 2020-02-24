@@ -16,3 +16,7 @@ Cambios:
     id de users es user_name
     tamaño de password es 30
     active es de tipo booleano
+
+
+
+    bin/cake bake model [nomTAbla]  ----> modelo de la tabla 

@@ -32,7 +32,7 @@ class UsersSeed extends AbstractSeed
             'last_name' => 'Solis',
             'password' => $user->_setPassword('software3'),
             'role'=> 'admin',
-            'active'=> '1',
+            'active'=> true,
             'create_date'=> date ('Y-m-d H:i:s'),
             'modified_date'=> date ('Y-m-d H:i:s')
         ];
@@ -43,7 +43,7 @@ class UsersSeed extends AbstractSeed
             'last_name' => 'Calambas',
             'password' => $user->_setPassword('software3'),
             'role' => 'admin',
-            'active' => '1',
+            'active' => true,
             'create_date' => date ('Y-m-d H:i:s'),
             'modified_date' => date ('Y-m-d H:i:s')
         ];
@@ -54,7 +54,7 @@ class UsersSeed extends AbstractSeed
             'last_name' => 'Ortiz',
             'password' => $user->_setPassword('software3'),
             'role' => 'user',
-            'active' => '1',
+            'active' => true,
             'create_date' => date ('Y-m-d H:i:s'),
             'modified_date' => date ('Y-m-d H:i:s')
         ];
