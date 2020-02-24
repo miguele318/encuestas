@@ -43,6 +43,19 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        
+        $this->loadComponent('Auth', ['authorize'=> ['Controller'], 'authenticate'=>[ 
+                'Form'=>[
+                    'fields'=>[
+                        'username'=>'username',
+                        'password'=>'password'
+                        ]
+                        ]
+                ],
+                'loginAction'=>['controller'=>'Users', 'action'=> 'login'],
+                'authError'=>'Ingrese sus datos', 'loginRedirect'=>['controller'=>'Users', 'action'=> 'index'], 
+                'logoutRedirect'=>['controller'=>'Pages', 'action'=>'home']
+]);
 
         
 
@@ -51,5 +64,9 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+    }
+    public function isAuthorized($user)
+    {
+        return true;
     }
 }

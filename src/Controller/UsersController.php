@@ -115,13 +115,18 @@ class UsersController extends AppController
             if($user)
             {
                 $this->Auth->setUser($user);
-                return $this-redirect($this->Auth->redirectUrl());
+                return $this->redirect($this->Auth->redirectUrl());
             }
             else
             {
-                $this->Flash-error('Datos son invalidos', ['key'=>'auth']);
+                $this->Flash->error('Datos son invalidos,  ingrese los datos nuevamente', ['key'=>'auth']);
             }
         }
+    }
+    
+    public function home()
+    {
+        $this->render();
     }
     
 }
