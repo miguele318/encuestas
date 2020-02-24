@@ -84,3 +84,9 @@ html,body{
     .links a{
     margin-left: 4px;
     }
+
+    .otro_color{
+        color:#0d0e0e;
+        font-family:"Helvetica Neue",Helvetica,Arial,sans-serif,bold ;
+        
+    }

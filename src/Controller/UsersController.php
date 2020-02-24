@@ -19,9 +19,12 @@ class UsersController extends AppController
      */
     public function index()
     {
-
+        
+        $this->viewBuilder()->setLayout('menu');
         $users = $this->paginate($this->Users);
         $this->set('users', $users);
+        
+        
         
     }
 

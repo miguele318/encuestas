@@ -6,8 +6,20 @@
 
 ?>
 
+<?= $this->Html->css('fonts/ind/font-awesome.min.css') ?>
+<?= $this->Html->script('inde/script.min.js') ?>
+<?= $this->Html->script('bootstrap/bootstrap.bundle.min.js') ?>
+<?= $this->Html->script('jquery/jquery.easing.min.js') ?>
+<?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
+<?= $this->Html->script('bootstrap/bootstrap.min.js') ?>
+<?= $this->Html->script('jquery/jquery.min.js') ?>
+<?= $this->Html->css('style.css') ?>
+<?= $this->Html->css('styles.min.css') ?>
 <?= $this->Html->script('style_tab') ?>
-
+<?= $this->Html->script('agency.js') ?>
+<!DOCTYPE html>
+<html>
+<head>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -16,7 +28,14 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title> index User</title>
+    
+    
+</head>
+<body id="page-top">
+
     
 
 <div class="container">
@@ -24,7 +43,7 @@
 		
         
         <div class="col-md-12">
-        <h4>LISTA DE USUARIOS</h4>
+        <h3 class='otro_color'>LISTA DE USUARIOS</h3>
         <div class="table-responsive">
 
                 
@@ -48,11 +67,11 @@
     <?php foreach ($users as $user): ?>
                 <tr>
                 
-                    <td><?= h($user->username) ?></td>
-                    <td><?= h($user->first_name) ?></td>
-                    <td><?= h($user->last_name) ?></td>
-                    <td><?= h($user->role) ?></td>
-                    <td><?php if(($user->active)>0)
+                    <td class='otro_color'><?= h($user->username) ?></td>
+                    <td class='otro_color'><?= h($user->first_name) ?></td>
+                    <td class='otro_color'><?= h($user->last_name) ?></td>
+                    <td class='otro_color'><?= h($user->role) ?></td>
+                    <td class='otro_color'><?php if(($user->active)>0)
                     {
                         Echo('Yes');
 
@@ -97,7 +116,7 @@
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
 </ul>
-<p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>       
+<p class='otro_color'><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>       
 
             </div>
             
@@ -105,3 +124,4 @@
 	</div>
 </div>
 </body>
+                </html>

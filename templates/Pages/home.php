@@ -30,24 +30,23 @@ endif;
 
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
-<?= $this->Html->css('bootstrap/bootstrap.min') ?>
-<?= $this->Html->css('styles.min') ?>
-<?= $this->Html->css('font-awesome.min') ?>
-<?= $this->Html->css('Cabin') ?>
-<?= $this->Html->css('Lora') ?>
-<?= $this->Html->script('bootstrap/bootstrap.min') ?>
-<?= $this->Html->script('jquery/jquery.min') ?>
-<?= $this->Html->script('script.min') ?>
-<?= $this->Html->script('bootstrap/bootstrap.bundle.min') ?>
-<?= $this->Html->script('jquery/jquery.easing.min') ?>
+
+<?= $this->Html->css('bootstrap_princ/bootstrap.min.css') ?>
+<?= $this->Html->css('fonts/font-awesome.min.css') ?>
+<?= $this->Html->script('bootstrap/bootstrap.bundle.min.js') ?>
+<?= $this->Html->script('jquery/jquery.easing.min.js') ?>
+<?= $this->Html->script('bootstrap/bootstrap.min.js') ?>
+<?= $this->Html->script('jquery/jquery.min.js') ?>
+<?= $this->Html->script('script.min.js') ?>
+
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Home </title>
-    
+    <title>Home</title>
     
     
     
@@ -59,7 +58,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                 aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><?= $this->Html->link(__('login'), ['Controller'=>'Users' ,'action' => 'login'], ['class'=>"nav-link js-scroll-trigger"]) ?></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation">  <?= $this->Html->link(__('Login'), ['controller'=>'Users', 'action' => 'login', 'class'=>'nav-link js-scroll-trigger',]) ?></li>
                 </ul>
             </div>
         </div>
@@ -107,9 +106,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             <p>Copyright ©&nbsp;Brand 2020</p>
         </div>
     </footer>
-
     
-
     
 </body>
 
