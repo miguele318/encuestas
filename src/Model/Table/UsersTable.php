@@ -38,11 +38,7 @@ class UsersTable extends Table
         $this->setDisplayField('username');
         $this->setPrimaryKey('username');
 
-        $this->belongsToMany('Tests', [
-            'foreignKey' => 'user_id',
-            'targetForeignKey' => 'test_id',
-            'joinTable' => 'users_tests',
-        ]);
+        
     }
 
     /**
@@ -112,4 +108,13 @@ class UsersTable extends Table
 
         return $rules;
     }
+
+    public function findAuth (Query $query, array $options)
+    {
+        $query 
+            ->select(['username', 'first_name', 'last_name', 'password', 'role', 'active'])
+            ->where (['Users.active'=>1]);
+        return $query;
+    }
+    
 }

@@ -17,6 +17,8 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
+
 
 /**
  * Application Controller
@@ -40,6 +42,7 @@ class AppController extends Controller
     public function initialize(): void
     {
         parent::initialize();
+        
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
@@ -49,13 +52,17 @@ class AppController extends Controller
                     'fields'=>[
                         'username'=>'username',
                         'password'=>'password'
-                        ]
+                    ], 
+                    'finder'=>'Auth'
                         ]
                 ],
                 'loginAction'=>['controller'=>'Users', 'action'=> 'login'],
-                'authError'=>'Ingrese sus datos', 'loginRedirect'=>['controller'=>'Users', 'action'=> 'index'], 
-                'logoutRedirect'=>['controller'=>'Pages', 'action'=>'home']
+                'loginRedirect'=>['controller'=>'Users', 'action'=> 'home'], 
+            
+                'unauthorizedRedirect' => $this-> referer()
 ]);
+
+$this->Auth->allow(['display']);
 
         
 
@@ -65,8 +72,23 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
+
+    public function beforeFilter(EventInterface $event)
+    {
+        $this->set('current_user', $this->Auth->user());
+    }
+
     public function isAuthorized($user)
     {
-        return true;
+       
+       if(isset($user['role']) and $user['role'] == 'admin')
+       {
+           return true;
+
+       }
+       return false;
+       
+         
     }
 }
+

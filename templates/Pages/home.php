@@ -58,7 +58,11 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                 aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item nav-link js-scroll-trigger" role="presentation">  <?= $this->Html->link(__('Login'), ['controller'=>'Users', 'action' => 'login', 'class'=>'nav-link js-scroll-trigger',]) ?></li>
+                <?php if(isset($current_user)): ?>
+                    <li role="presentation" class="nav-item"> <?= $this->html->link('CERRAR SESION', ['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
+                <?php else: ?>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation">  <?= $this->Html->link(__('Login'), ['controller'=>'Users', 'action' => 'login', 'class'=>'nav-link js-scroll-trigger']) ?></li>
+                <?php endif;?>
                 </ul>
             </div>
         </div>

@@ -40,11 +40,11 @@
                 </tr>
                 <tr>
                     <th><?= __('Create Date') ?></th>
-                    <td><?= h($user->create_date) ?></td>
+                    <td><?= h($user->create_date->nice()) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Modified Date') ?></th>
-                    <td><?= h($user->modified_date) ?></td>
+                    <td><?= h($user->modified_date->nice()) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Active') ?></th>

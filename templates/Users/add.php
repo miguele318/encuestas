@@ -17,14 +17,14 @@
             <fieldset>
                 <legend><?= __('Add User') ?></legend>
                 <?php
+                    echo $this->Form->control('username', ['type'=>'text']);
                     echo $this->Form->control('first_name');
                     echo $this->Form->control('last_name');
                     echo $this->Form->control('password');
-                    echo $this->Form->control('role');
+                    echo $this->Form->control('role', ['options'=>['admin'=>'admin', 'user'=>'user']]);
                     echo $this->Form->control('active');
-                    echo $this->Form->control('create_date');
-                    echo $this->Form->control('modified_date');
-                    echo $this->Form->control('tests._ids', ['options' => $tests]);
+                    
+                    
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

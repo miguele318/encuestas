@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 use  App\Controller\AppController;
+use Cake\Event\Event;
+
 
 /**
  * Users Controller
@@ -17,6 +19,24 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public function isAuthorized($user)
+    {
+        $action=$this->request->getParam('action');
+        if(isset($user['role']) and $user['role'] === 'user')
+        {
+            if(in_array($action, ['home', 'view', 'logout']))
+            {
+                return true;
+
+            }
+
+        }
+
+        return parent::isAuthorized($user);
+        
+    }
+
+
     public function index()
     {
         
@@ -35,12 +55,10 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($id)
     {
-        $user = $this->Users->get($id, [
-            'contain' => [],
-        ]);
-
+        $this->viewBuilder()->setLayout('menu');
+        $user = $this->Users->get($id);
         $this->set('user', $user);
     }
 
@@ -51,9 +69,13 @@ class UsersController extends AppController
      */
     public function add()
     {
+        
         $user = $this->Users->newEmptyEntity();
+        
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            $user->create_date=date("Y-m-d H:i:s");
+            $user->modified_date=date("Y-m-d H:i:s");
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -73,6 +95,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('menu');
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
@@ -95,10 +118,10 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    public function delete($username = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
+        $user = $this->Users->get($username);
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {
@@ -109,6 +132,7 @@ class UsersController extends AppController
     }
     public function login ()
     {
+        $this->viewBuilder()->setLayout('menu');
         if($this-> request-> is('post'))
         {
             $user=$this->Auth->identify();
@@ -124,12 +148,15 @@ class UsersController extends AppController
         }
     }
     public function logout(){
+        
         return $this->redirect($this->Auth->logout());
     }
     
     public function home()
     {
+        $this->viewBuilder()->setLayout('menu');
         $this->render();
+        
     }
     
 }
