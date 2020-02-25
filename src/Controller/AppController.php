@@ -48,9 +48,9 @@ class AppController extends Controller
             ['authorize'=> ['Controller'], 
             'authenticate'=>['Form'=>[]],
             'loginAction'=>['controller'=>'Users', 'action'=> 'login'],
-            'authError'=>'Ingrese sus datos', 
-            'loginRedirect'=>['controller'=>'Users', 'action'=> 'index'], 
-            'logoutRedirect'=>['controller'=>'Pages', 'action'=>'home']
+            'authError'=>'Ingrese sus datos',
+                'loginRedirect'=>['controller'=>'Users', 'action'=> 'crearEncuesta'], 
+                'logoutRedirect'=>['controller'=>'Pages', 'action'=>'home']
         ]);
 
         
