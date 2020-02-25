@@ -50,10 +50,8 @@ class AppController extends Controller
             'loginAction'=>['controller'=>'Users', 'action'=> 'login'],
             'authError'=>'Ingrese sus datos', 
             'loginRedirect'=>['controller'=>'Users', 'action'=> 'index'], 
-            #'action'=> 'home'
             'logoutRedirect'=>['controller'=>'Pages', 'action'=>'home']
-            #'action'=> 'login'
-]);
+        ]);
 
         
 
