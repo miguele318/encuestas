@@ -33,10 +33,10 @@
             </i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="nav navbar-nav ml-auto text-uppercase">
+            <ul class="nav navbar-nav ml-auto text-uppercase navbar-right">
                 <li role="presentation" class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">AÑADIR USUARIO</a></li>
                 <li role="presentation" class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">LISTA DE USUARIOS</a></li>
-                <li role="presentation" class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">CERRAR SESION</a></li>
+                <li role="presentation" class="nav-item"><?= $this->html->link('CERRAR SESION',['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
                 
             </ul>
         </div>
