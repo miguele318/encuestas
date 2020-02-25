@@ -129,4 +129,8 @@ class UsersController extends AppController
         $this->render();
     }
     
+    public function crearEncuesta()
+    {
+        $this->render();
+    }
 }
