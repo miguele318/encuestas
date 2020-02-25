@@ -110,6 +110,7 @@
 <div class="clearfix"></div>
 
 <ul class="pagination pull-right">
+
   <?= $this->Paginator->first('<< ' . __('first')) ?>
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
             <?= $this->Paginator->numbers() ?>
