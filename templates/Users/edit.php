@@ -4,36 +4,74 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $user->username],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $user->username), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Users'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="users form content">
+<?= $this->Html->css('style.css') ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="page-top">
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+        
             <?= $this->Form->create($user) ?>
-            <fieldset>
-                <legend><?= __('Edit User') ?></legend>
-                <?php
-                    echo $this->Form->control('first_name');
-                    echo $this->Form->control('last_name');
-                    echo $this->Form->control('password');
-                    echo $this->Form->control('role');
-                    echo $this->Form->control('active');
-                    echo $this->Form->control('create_date');
-                    echo $this->Form->control('modified_date');
-                    echo $this->Form->control('tests._ids', ['options' => $tests]);
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
-        </div>
-    </div>
+
+                <div class="card-header">
+                    <h3> Edit User  <?= $user->first_name.'  '.$user->last_name  ?> </h3>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="input-group form-group otro_color">
+                        <?php if($current_user['username']==$user->username): ?>
+                            
+                                <?php
+                                echo $this->Form->control('username', ['class'=>'form-control', 'type'=>'text']);
+                                echo $this->Form->control('first_name', ['class'=> 'form-control']);
+                                echo $this->Form->control('last_name', ['class'=>'form-control']);
+                                echo $this->Form->control('password', ['class'=>'form-control']);
+                                
+                            ?>
+                            <?php else: ?>
+                                <?php if($current_user['role']=='admin'): ?>
+                                    <di id='rol'>
+                                        <?=$this->Form->control('role', [['class'=>'form-control'], 'options'=>['admin'=>'admin', 'user'=>'user']])  ?>
+                                        <?= $this->Form->control('active', ['class'=>'form-control'])?>
+                                </div>
+                                     
+                                    
+
+                                <?php endif; ?>
+
+                            <?php endif; ?>
+
+                        </div>
+                        
+                        <div class="form-group">
+                            
+                            <?= $this->Form->button('Submit', ['class'=>'btn float-right login_btn'])?>
+                        </div>
+                    </form>
+                </div>
+                <?= $this->Form->end() ?>
+                
+
+
+		</div>
+	</div>
 </div>
+    
+</body>
+</html>
+
+

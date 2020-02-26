@@ -58,7 +58,6 @@ class AppController extends Controller
                 ],
                 'loginAction'=>['controller'=>'Users', 'action'=> 'login'],
                 'loginRedirect'=>['controller'=>'Users', 'action'=> 'home'], 
-            
                 'unauthorizedRedirect' => $this-> referer()
 ]);
 

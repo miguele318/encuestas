@@ -7,7 +7,6 @@
 <?= $this->Html->script('bootstrap/bootstrap.min.js', ['block' => true]) ?>
 <?= $this->Html->script('jquery/jquery.min.js', ['block' => true]) ?>
 <?= $this->Html->css('style.css', ['block' => true]) ?>
-<?= $this->Html->script('style_tab', ['block' => true]) ?>
 <?= $this->Html->script('agency.js', ['block' => true]) ?>
 <?= $this->Html->css('styles.min.css', ['block' => true]) ?>
 
@@ -26,7 +25,9 @@
 <body id="page-top">
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
     <div class="container">
-    
+    <?= $this->fetch('error')?>
+
+    <?= $this->fetch('success')?>
     <?php if(isset($current_user)): ?>
     
     <?= $this->Html->link(__('Survey S&S'), ['controller'=>'Users', 'action' => 'home', 'class' => 'navbar-brand'])?>
@@ -43,16 +44,16 @@
 
                     <?php if($current_user['role']=='admin'): ?>
                         <ul class="nav navbar-nav ml-auto text-uppercase navbar-right">
-                            <li role="presentation" class="nav-item"><?= $this->html->link('AÑADIR USUARIO', ['controller'=>'Users', 'action'=>'add','class'=>'nav-link js-scroll-trigger'])?></li>
-                            <li role="presentation" class="nav-item"> <?= $this->html->link('LISTA DE USUARIOS', ['controller'=>'Users', 'action'=>'index','class'=>'nav-link js-scroll-trigger'])?></li>
-                            <li role="presentation" class="nav-item"> <?= $this->html->link('CERRAR SESION', ['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
+                            <li role="presentation" class="nav-item"> <?= $this->html->link('USER ADD ', ['controller'=>'Users', 'action'=>'add','class'=>'nav-link js-scroll-trigger'])?></li>
+                            <li role="presentation" class="nav-item"> <?= $this->html->link('USERS LIST', ['controller'=>'Users', 'action'=>'index','class'=>'nav-link js-scroll-trigger'])?></li>
+                            <li role="presentation" class="nav-item"> <?= $this->html->link('LOGOUT', ['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
                             
                         </ul>
                     <?php else: ?>
                         <ul class="nav navbar-nav ml-auto text-uppercase navbar-right">
-                            <li role="presentation" class="nav-item"><?= $this->html->link('AÑADIR ENCUESTA', ['class'=>'nav-link js-scroll-trigger'])?></li>
-                            <li role="presentation" class="nav-item"> <?= $this->html->link('LISTA DE ENCUESTAS', ['class'=>'nav-link js-scroll-trigger'])?></li>
-                            <li role="presentation" class="nav-item"> <?= $this->html->link('CERRAR SESION', ['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
+                            <li role="presentation" class="nav-item"><?= $this->html->link('ADD TEST  ', ['class'=>'nav-link js-scroll-trigger'])?></li>
+                            <li role="presentation" class="nav-item"> <?= $this->html->link('TESTS LIST ', ['class'=>'nav-link js-scroll-trigger'])?></li>
+                            <li role="presentation" class="nav-item"> <?= $this->html->link('LOGOUT', ['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
                         </ul>
                     <?php endif; ?>
 

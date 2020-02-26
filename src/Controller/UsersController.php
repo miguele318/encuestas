@@ -24,7 +24,7 @@ class UsersController extends AppController
         $action=$this->request->getParam('action');
         if(isset($user['role']) and $user['role'] === 'user')
         {
-            if(in_array($action, ['home', 'view', 'logout']))
+            if(in_array($action, ['home', 'view', 'edit', 'logout']))
             {
                 return true;
 
@@ -69,13 +69,14 @@ class UsersController extends AppController
      */
     public function add()
     {
-        
+        $this->viewBuilder()->setLayout('menu');
         $user = $this->Users->newEmptyEntity();
         
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             $user->create_date=date("Y-m-d H:i:s");
             $user->modified_date=date("Y-m-d H:i:s");
+            $user->active=1;
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 

@@ -34,7 +34,7 @@
     
     
 </head>
-<body id="page-top">
+<body id="page-top" >
 
     
 
@@ -64,24 +64,29 @@
                     
                    </thead>
     <tbody>
-    <?php foreach ($users as $user): ?>
+
+    <?php $numero = 1;
+     foreach ($users as $user): ?>
+        
                 <tr>
-                
+                <?php if ($numero%2==0): ?>
                     <td class='otro_color'><?= h($user->username) ?></td>
                     <td class='otro_color'><?= h($user->first_name) ?></td>
                     <td class='otro_color'><?= h($user->last_name) ?></td>
                     <td class='otro_color'><?= h($user->role) ?></td>
-                    <td class='otro_color'><?php if(($user->active)>0)
-                    {
-                        Echo('Yes');
-
-                    } 
-                    else
-                    {
-                        Echo('No');
-                        
-                    }
-                    ?></td>
+                    <td class='otro_color'><?= $user->active ? __('Yes') : __('No'); ?></td>
+            
+            <?php else:?>
+                <td ><?= h($user->username) ?></td>
+                    <td ><?= h($user->first_name) ?></td>
+                    <td ><?= h($user->last_name) ?></td>
+                    <td ><?= h($user->role) ?></td>
+                    <td> <?= $user->active ? __('Yes') : __('No'); ?>
+                    </td>
+                
+            <?php endif;?>
+                
+                    
                     
                     <td> 
                         <?= $this->Html->link(__('View'), ['action' => 'view', $user->username]) ?>
@@ -93,6 +98,7 @@
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->username], ['confirm' => __('Are you sure you want to delete # {0}?', $user->username)]) ?>
                     </td>
                 </tr>
+                <?php $numero++;?>
                 <?php endforeach; ?>
    
     
