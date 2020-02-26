@@ -42,10 +42,7 @@ class UsersController extends AppController
         
         $this->viewBuilder()->setLayout('menu');
         $users = $this->paginate($this->Users);
-        $this->set('users', $users);
-        
-        
-        
+        $this->set('users', $users);        
     }
 
     /**
@@ -160,4 +157,9 @@ class UsersController extends AppController
         
     }
     
+    
+    public function crearEncuesta()
+    {
+        $this->render();
+    }
 }

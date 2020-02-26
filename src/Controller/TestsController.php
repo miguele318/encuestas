@@ -19,6 +19,7 @@ class TestsController extends AppController
      */
     public function index()
     {
+        $this->viewBuilder()->setLayout('menu');
         $tests = $this->paginate($this->Tests);
 
         $this->set(compact('tests'));
@@ -33,6 +34,7 @@ class TestsController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('menu');
         $test = $this->Tests->get($id, [
             'contain' => ['Users', 'Questions'],
         ]);
@@ -47,6 +49,7 @@ class TestsController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->setLayout('menu');
         $test = $this->Tests->newEmptyEntity();
         if ($this->request->is('post')) {
             $test = $this->Tests->patchEntity($test, $this->request->getData());
@@ -70,8 +73,9 @@ class TestsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('menu');
         $test = $this->Tests->get($id, [
-            'contain' => ['Users'],
+            'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $test = $this->Tests->patchEntity($test, $this->request->getData());
@@ -82,8 +86,8 @@ class TestsController extends AppController
             }
             $this->Flash->error(__('The test could not be saved. Please, try again.'));
         }
-        $users = $this->Tests->Users->find('list', ['limit' => 200]);
-        $this->set(compact('test', 'users'));
+        //$users = $this->Tests->Users->find('list', ['limit' => 200]);
+        //$this->set(compact('test', 'users'));
     }
 
     /**
@@ -95,6 +99,7 @@ class TestsController extends AppController
      */
     public function delete($id = null)
     {
+
         $this->request->allowMethod(['post', 'delete']);
         $test = $this->Tests->get($id);
         if ($this->Tests->delete($test)) {
@@ -105,4 +110,5 @@ class TestsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
 }

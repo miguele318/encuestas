@@ -23,6 +23,7 @@ class TestsSeed extends AbstractSeed
         $data = [];
 
         $table = $this->table('tests');
+        
         $data[]=[
             "name" => "ASQ",
             "description"=>"After-Scenario Questionnaire (3 questions)"
@@ -42,6 +43,11 @@ class TestsSeed extends AbstractSeed
         $data[]=[
             "name" => "SEQ",
             "description"=>"Single Ease Question (1 question)"
+        ];
+
+        $data[]=[
+            "name" => "SUS",
+            "description"=>"System Usability scale (10 question)"
         ];
 
         $table->insert($data)->save();

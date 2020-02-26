@@ -4,31 +4,62 @@
  * @var \App\Model\Entity\Test $test
  */
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $test->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $test->id), 'class' => 'side-nav-item']
-            ) ?>
-            <?= $this->Html->link(__('List Tests'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="tests form content">
+<?= $this->Html->css('style.css') ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="page-top">
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+        
             <?= $this->Form->create($test) ?>
-            <fieldset>
-                <legend><?= __('Edit Test') ?></legend>
-                <?php
-                    echo $this->Form->control('name');
-                    echo $this->Form->control('description');
-                    echo $this->Form->control('users._ids', ['options' => $users]);
-                ?>
-            </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
-            <?= $this->Form->end() ?>
-        </div>
-    </div>
+
+                <div class="card-header">
+                    <h3> Edit Test  </h3>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="input-group form-group otro_color">
+                        
+                            
+                                <?php
+                                echo $this->Form->control('name', ['class'=> 'form-control']);
+                                echo $this->Form->control('description', ['class'=> 'form-control']);
+                                ?>
+                                
+                                
+                            ?>
+
+                        </div>
+                        
+                        <div class="form-group">
+                            
+                            <?= $this->Form->button('Submit', ['class'=>'btn float-right login_btn'])?>
+                        </div>
+                    </form>
+                </div>
+                <?= $this->Form->end() ?>
+                
+
+
+		</div>
+	</div>
 </div>
+    
+</body>
+</html>
+
+

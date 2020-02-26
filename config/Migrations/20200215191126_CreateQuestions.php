@@ -20,6 +20,7 @@ class CreateQuestions extends AbstractMigration
             'limit' => 250,
             'null' => false,
         ]);
+        
         $table->addColumn('test_id','integer',["limit"=>11]);
         $table->addForeignKey("test_id","tests","id",["delete"=> "CASCADE", "update"=>"CASCADE"]);
         $table->create();

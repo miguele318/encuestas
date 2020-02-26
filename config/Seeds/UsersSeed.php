@@ -29,6 +29,8 @@ class UsersSeed extends AbstractSeed
         $faker = Faker\Factory::create();
         
         $data = [];
+        
+        
         for($i = 0; $i < 30; $i++)
         {
             //creamos 20 filas de datos
