@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 use  App\Controller\AppController;
 use Cake\Event\Event;
+use App\Model\Entity\Question;
 
 
 /**
@@ -158,8 +159,5 @@ class UsersController extends AppController
     }
     
     
-    public function crearEncuesta()
-    {
-        $this->render();
-    }
+    
 }

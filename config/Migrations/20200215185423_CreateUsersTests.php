@@ -15,6 +15,11 @@ class CreateUsersTests extends AbstractMigration
     public function change()
     {
         $table = $this->table('users_tests');
+        $table->addColumn('name', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => false,
+        ]);
         $table->addColumn('url_app', 'string', [
             'default' => null,
             'limit' => 255,

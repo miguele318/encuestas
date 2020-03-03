@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use App\Model\Entity\Evaluation;
 
 /**
  * UsersTests Controller
@@ -17,10 +18,26 @@ class UsersTestsController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public function isAuthorized($user)
+    {
+        $action=$this->request->getParam('action');
+        if(isset($user['role']) and $user['role'] === 'user')
+        {
+            if(in_array($action, ['add', 'crearEncuesta', 'view', 'edit', 'delete']))
+            {
+                return true;
+
+            }
+
+        }
+
+        return parent::isAuthorized($user);
+        
+    }
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Tests'],
+            'conditions' => ['username'=>$this->Auth->user('username')],
         ];
         $usersTests = $this->paginate($this->UsersTests);
 
@@ -108,4 +125,34 @@ class UsersTestsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    
+    public function crearEncuesta($id_test =null)
+    {
+     
+        $usersTest = $this->UsersTests->newEmptyEntity();
+        if ($this->request->is('post')) {
+            $this->loadModel('Evaluation');
+            $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
+            $usersTest->username = $this->Auth->user('username');
+            $usersTest->test_id = $id_test;
+            $correos=$this->request->getData('correos');
+            $this->UsersTests->save($usersTest);
+                foreach ($correos as $c){
+                    $evaluation = $this->Evaluations->newEmptyEntity();
+                    $evaluation->token= String::uuid();
+                    $evaluation->email=$c;
+                    $evaluation->user_test_id=$this->UsersTest('id');
+                    $this->Evaluations->save($evaluation);
+
+                }
+                
+                    
+                //$this->Flash->success(__('The users test has been saved.'));
+
+                //return $this->redirect(['action' => 'index']);
+            }
+        
+    }
+        
+        
 }
