@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controller;
 use App\Model\Entity\Evaluation;
 
+
 /**
  * UsersTests Controller
  *
@@ -126,19 +127,22 @@ class UsersTestsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     
-    public function crearEncuesta($id_test =null)
+    public function crearEncuesta()
     {
-     
+        $this->viewBuilder()->setLayout('menu');
         $usersTest = $this->UsersTests->newEmptyEntity();
+        //$this->loadModel('Evaluation');
+        
         if ($this->request->is('post')) {
-            $this->loadModel('Evaluation');
             $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
             $usersTest->username = $this->Auth->user('username');
-            $usersTest->test_id = $id_test;
+            
             $correos=$this->request->getData('correos');
             $this->UsersTests->save($usersTest);
+            
+            
                 foreach ($correos as $c){
-                    $evaluation = $this->Evaluations->newEmptyEntity();
+                    
                     $evaluation->token= String::uuid();
                     $evaluation->email=$c;
                     $evaluation->user_test_id=$this->UsersTest('id');

@@ -72,36 +72,31 @@ class EvaluationsTable extends Table
 
         $validator
             ->scalar('token')
-            ->maxLength('token', 10)
+            ->maxLength('token', 255)
             ->requirePresence('token', 'create')
             ->notEmptyString('token');
 
         $validator
             ->integer('state')
-            ->requirePresence('state', 'create')
-            ->notEmptyString('state');
+            ->allowEmptyString('state');
 
         $validator
             ->integer('age')
-            ->requirePresence('age', 'create')
-            ->notEmptyString('age');
+            ->allowEmptyString('age');
 
         $validator
             ->scalar('gender')
             ->maxLength('gender', 1)
-            ->requirePresence('gender', 'create')
-            ->notEmptyString('gender');
+            ->allowEmptyString('gender');
 
         $validator
             ->scalar('location')
             ->maxLength('location', 200)
-            ->requirePresence('location', 'create')
-            ->notEmptyString('location');
+            ->allowEmptyString('location');
 
         $validator
             ->dateTime('date')
-            ->requirePresence('date', 'create')
-            ->notEmptyDateTime('date');
+            ->allowEmptyDateTime('date');
 
         return $validator;
     }

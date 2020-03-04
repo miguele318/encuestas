@@ -11,11 +11,11 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $email
  * @property string $token
- * @property int $state
- * @property int $age
- * @property string $gender
- * @property string $location
- * @property \Cake\I18n\FrozenTime $date
+ * @property int|null $state
+ * @property int|null $age
+ * @property string|null $gender
+ * @property string|null $location
+ * @property \Cake\I18n\FrozenTime|null $date
  * @property int $user_test_id
  *
  * @property \App\Model\Entity\UsersTest $users_test

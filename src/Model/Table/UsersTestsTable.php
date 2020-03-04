@@ -13,14 +13,19 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\TestsTable&\Cake\ORM\Association\BelongsTo $Tests
  *
- * @method \App\Model\Entity\UsersTest get($primaryKey, $options = [])
- * @method \App\Model\Entity\UsersTest newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\UsersTest newEmptyEntity()
+ * @method \App\Model\Entity\UsersTest newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\UsersTest[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\UsersTest get($primaryKey, $options = [])
+ * @method \App\Model\Entity\UsersTest findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\UsersTest patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\UsersTest[] patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\UsersTest|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \App\Model\Entity\UsersTest saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\UsersTest patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\UsersTest[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\UsersTest findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\UsersTest[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\UsersTest[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\UsersTest[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\UsersTest[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
 class UsersTestsTable extends Table
 {
@@ -35,7 +40,7 @@ class UsersTestsTable extends Table
         parent::initialize($config);
 
         $this->setTable('users_tests');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Tests', [
@@ -57,28 +62,60 @@ class UsersTestsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->add('url_app','valid',['rule'=>'url'])
-            ->scalar('url_app')
-            ->maxLength('url_app', 255)
-            ->requirePresence('url_app', 'create')
-            ->notEmptyString('url_app');
+            ->scalar('name')
+            ->maxLength('name', 255)
+            ->requirePresence('name', 'create')
+            ->notEmptyString('name', 'campo vacio, rellene este campo');
 
+        $validator
+            ->requirePresence('url_app', 'create')
+                ->notEmpty('url_app', 'campo vacio, rellene este campo')
+                ->add('url_app', 'valid-url', [
+                        'rule' => 'url',
+                        'message' => 'URL No está formateada correctamente'
+                    ])
+                ->add('url_app','userTest',[
+                        'rule'=>  function($url, $context){
+                            // normalize URL format
+                            if (0 !== strpos($url, 'http://') && 0 !== strpos($url, 'https://')) {
+                               $url = "http://{$url}";
+                            }
+                            // check headers against common 4xx,5xx HTTP codes
+                            if($file_headers = get_headers($url)){
+                                $codes = [ 
+                                    '400','401','402','403','404',
+                                    '500','501','502','503','504'
+                                ];
+                                foreach($codes as $code){
+                                    if(true === strpos($file_headers[0], $code)) {
+                                        return false;
+                                    }
+                                }
+                                return true; // passes validation
+                            }
+                            return false;
+                        },
+                        
+                        'message'=>'No podemos llegar al sitio web. vuelva a verificar la URL e intente nuevamente']);
+            
         $validator
             ->dateTime('max_date')
             ->requirePresence('max_date', 'create')
-            ->notEmptyDateTime('max_date');
+            ->notEmptyDateTime('max_date', 'campo vacio, rellene este campo');
 
         $validator
             ->scalar('message')
             ->maxLength('message', 250)
             ->requirePresence('message', 'create')
-            ->notEmptyString('message');
+            ->notEmptyString('message', ' campo vacio, rellene este campo');
 
         $validator
             ->scalar('username')
             ->maxLength('username', 50)
             ->requirePresence('username', 'create')
             ->notEmptyString('username');
+
+
 
         return $validator;
     }
