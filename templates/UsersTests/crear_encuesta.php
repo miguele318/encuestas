@@ -39,10 +39,7 @@ $correosE =[];
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
-=======
-    <title>Crear Encuesta</title>
 
->>>>>>> e65e254e3172f6097cb78567f54c749239e34c8f
 </head>
 
 <body>
@@ -104,7 +101,24 @@ $correosE =[];
 
         
         });
+        function verificarUrl(){
+            $.ajax({
+        type: "GET",
+        url:"1234.json",
+        dataType:"json",
+        success:function(response){
+            
+            alert("se encontro el archivo");
+            
+        },
+        error:function(){
+            alert("el archivo no existe");   
+            crearArchivo(cod);
+        } 
+    });   
+}
 
+        }
        
 
     </script>
@@ -120,7 +134,8 @@ $correosE =[];
                 <?=$this->Form->input('name', ['class'=>"border rounded form-control-sm", 'type'=>"text", "placeholder" => "Encuesta... ", "label" => false, "required"])?>
                 <p></p>
                 <label class="d-inline-flex"><strong>Pagina WEB:  </strong></label>
-                <?=$this->Form->input('url_app', ['class'=>"border rounded form-control-sm", 'type' =>"text", "placeholder" => "Pagina WEB... ", "label" => false, "required"])?>
+                <?=$this->Form->input('url_app', ['id'=>'url', 'class'=>"border rounded form-control-sm", 'type' =>"text", "placeholder" => "Pagina WEB... ", "label" => false, "required"])?>
+                <?=$this->Form->button(('verificar'), ['class'=>"btn btn-primary",  'style'=>"margin: 0 auto;width: 200px;height: 50px;", 'onClick'=>'verificarUrl()'])?>
                 <i class="fa fa-remove"></i>
                 <p></p>
                 <label class="d-inline-flex"><strong>Fecha fin:  </strong></label>
@@ -128,7 +143,7 @@ $correosE =[];
                 <p></p>
                 <label class="d-inline-flex"><strong>Tipo de test:  </strong></label>
                 <?=$this->Form->control('test_id', ['options' => $tests])  ?>
-<<<<<<< HEAD
+
                 <p></p><label class="d-inline-flex"><strong>Mensaje para los encuestados:&nbsp;</strong></label>
                 <?=$this->Form->input('message', ['type'=>'textarea', 'class'=>"border rounded form-control-lg", 'autocomplete'=>"on", 'autofocus'=>"", 'spellcheck'=>"true", 'cols'=>"30", 'style'=>"width: 70%;height: 80px;margin: 0 auto;"])?>
                 
@@ -143,22 +158,6 @@ $correosE =[];
                                
 
                 <p></p> <?= $this->Form->button(('crear Encuesta'), ['class'=>"btn btn-primary",  'style'=>"margin: 0 auto;width: 200px;height: 50px;", 'onClick'=>'submit()' ]) ?></div>
-=======
-                <p></p>
-                <label class="d-inline-flex"><strong>Mensaje para los encuestados:  </strong></label>
-                <?=$this->Form->textarea('message', ['type'=>'textarea', 'class'=>"border rounded form-control-lg", "placeholder" => "Mensaje para los encuestados... ", "label" => false, "required", 'autocomplete'=>"on", 'autofocus'=>"", 'spellcheck'=>"true", 'cols'=>"30"])?>
->>>>>>> e65e254e3172f6097cb78567f54c749239e34c8f
-                <?= $this->Form->end() ?>
-                
-
-<<<<<<< HEAD
-=======
-                <?= $this->Form->create($Evaluation)?> 
-                <p></p><label class="d-inline-flex"><strong>E-mail:  </strong></label><input class="border rounded form-control-sm" type="text" style="margin: 5px;width: 50%;">
-                <!--<button class="btn btn-primary" type="button">Agregar</button>-->
-                <p></p><button class="btn btn-primary" type="button" style="margin: 0 auto;width: 200px;height: 50px;">Crear Encuesta</button>
-            </div>
->>>>>>> e65e254e3172f6097cb78567f54c749239e34c8f
         </div>
         <div></div>
     </div>
