@@ -131,7 +131,8 @@
 #info {
   padding: 20px;
   text-align: center;
-  background: url(/opt/lampp/htdocs/encuestas/webroot/img/typeform-tipos-700x854.png) no-repeat;
+  /*background: url('/encuestas/img/encuesta.png') no-repeat;*/
+  background-image: url("/encuestas/img/encuesta.png");
   background-size: cover;
   max-width: 96%;
   margin: 0 auto;
