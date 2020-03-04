@@ -137,6 +137,7 @@ class UsersTestsController extends AppController
             $usersTest->test_id = $id_test;
             $correos=$this->request->getData('correos');
             $this->UsersTests->save($usersTest);
+            $this->Flash->success(__('The users test has been saved.'));
                 foreach ($correos as $c){
                     $evaluation = $this->Evaluations->newEmptyEntity();
                     $evaluation->token= String::uuid();
