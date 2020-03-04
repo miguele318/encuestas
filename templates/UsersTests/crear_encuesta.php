@@ -5,15 +5,15 @@
  */
 ?>
 
-<?= $this->Html->css('bootstrap.min2.css') ?>
-<?= $this->Html->css('font-awesome.min.css') ?>
-<?= $this->Html->css('ionicons.min.css') ?>
-<?= $this->Html->script('bootstrap.min2.js') ?>
-<?= $this->Html->script('jquery.min2.js') ?>
-<?= $this->Html->css('styles.css') ?>
+<?= $this->Html->css('bootstrap/bootstrap.min2.css') ?>
+<?= $this->Html->css('fonts/newFonts/font-awesome.min2.css') ?>
+<?= $this->Html->css('fonts/newFonts/ionicons.min2.css') ?>
+<?= $this->Html->css('styleCE.css') ?>
 <?= $this->Html->css('Navigation-with-Search.css') ?>
 <?= $this->Html->css('Footer-Basic.css') ?>
-<?= $this->Html->css('Bootstrap-Calendar.css') ?>
+
+<?= $this->Html->script('jquery/jquery.min2.js') ?>     
+<?= $this->Html->script('bootstrap/bootstrap.min2.js') ?>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>cacharreando1</title>
+    <title>Crear Encuesta</title>
 
 </head>
 
@@ -33,21 +33,29 @@
         <div class="text-center bg-light" id="info">
             <?= $this->Flash->render('auth') ?>
 			<?= $this->Form->create($usersTest) ?>    
-            <div id="datos"><label class="d-inline-flex"><strong>Nombre de la encuesta:&nbsp;</strong></label>
-            <?=$this->Form->input('name', ['class'=>"border rounded form-control-sm", 'type'=>"text", 'style'=>"margin: 5px;width: 45%;"])?>
-                <p></p><label class="d-inline-flex"><strong>Pagina WEB:&nbsp;&nbsp;</strong></label>
-                <?=$this->Form->input('url_app', ['class'=>"border rounded form-control-sm", 'type' =>"text", 'style'=>"margin: 5px;width: 64%;"])?><i class="fa fa-remove"></i>
-                <p></p><label class="d-inline-flex"><strong>Fecha fin:&nbsp;&nbsp;</strong></label>
+            <div id="datos">
+                <label class="d-inline-flex"><strong>Nombre de la encuesta:  </strong></label>
+                <?=$this->Form->input('name', ['class'=>"border rounded form-control-sm", 'type'=>"text", "placeholder" => "Encuesta... ", "label" => false, "required"])?>
+                <p></p>
+                <label class="d-inline-flex"><strong>Pagina WEB:  </strong></label>
+                <?=$this->Form->input('url_app', ['class'=>"border rounded form-control-sm", 'type' =>"text", "placeholder" => "Pagina WEB... ", "label" => false, "required"])?>
+                <i class="fa fa-remove"></i>
+                <p></p>
+                <label class="d-inline-flex"><strong>Fecha fin:  </strong></label>
                 <?=$this->Form->input('max_date', ['type'=>"date"])?>  
-                <p></p><label class="d-inline-flex"><strong>Tipo de test:&nbsp;&nbsp;</strong></label>
+                <p></p>
+                <label class="d-inline-flex"><strong>Tipo de test:  </strong></label>
                 <?=$this->Form->control('test_id', ['options' => $tests])  ?>
-                <p></p><label class="d-inline-flex"><strong>Mensaje para los encuestados:&nbsp;</strong></label>
-                <?=$this->Form->input('message', ['type'=>'textarea', 'class'=>"border rounded form-control-lg", 'autocomplete'=>"on", 'autofocus'=>"", 'spellcheck'=>"true", 'cols'=>"30", 'style'=>"width: 70%;height: 80px;margin: 0 auto;"])?>
+                <p></p>
+                <label class="d-inline-flex"><strong>Mensaje para los encuestados:  </strong></label>
+                <?=$this->Form->textarea('message', ['type'=>'textarea', 'class'=>"border rounded form-control-lg", "placeholder" => "Mensaje para los encuestados... ", "label" => false, "required", 'autocomplete'=>"on", 'autofocus'=>"", 'spellcheck'=>"true", 'cols'=>"30"])?>
                 <?= $this->Form->end() ?>
 
-                <?=$this->Form->create($Evaluation)?> 
-                <p></p><label class="d-inline-flex"><strong>E-mail:&nbsp;&nbsp;</strong></label><input class="border rounded form-control-sm" type="text" style="margin: 5px;width: 50%;"><button class="btn btn-primary" type="button">Agregar</button>
-                <p></p><button class="btn btn-primary" type="button" style="margin: 0 auto;width: 200px;height: 50px;">Crear Encuesta</button></div>
+                <?= $this->Form->create($Evaluation)?> 
+                <p></p><label class="d-inline-flex"><strong>E-mail:  </strong></label><input class="border rounded form-control-sm" type="text" style="margin: 5px;width: 50%;">
+                <!--<button class="btn btn-primary" type="button">Agregar</button>-->
+                <p></p><button class="btn btn-primary" type="button" style="margin: 0 auto;width: 200px;height: 50px;">Crear Encuesta</button>
+            </div>
         </div>
         <div></div>
     </div>
