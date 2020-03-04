@@ -9,6 +9,7 @@ use Cake\ORM\Entity;
  * UsersTest Entity
  *
  * @property int $id
+ * @property string $name
  * @property string $url_app
  * @property \Cake\I18n\FrozenTime $max_date
  * @property string $message
@@ -29,6 +30,7 @@ class UsersTest extends Entity
      * @var array
      */
     protected $_accessible = [
+        'name' => true,
         'url_app' => true,
         'max_date' => true,
         'message' => true,
