@@ -151,6 +151,8 @@ class UsersTestsController extends AppController
 
                 //return $this->redirect(['action' => 'index']);
             }
+            $tests = $this->UsersTests->Tests->find('list', ['limit' => 200]);
+            $this->set(compact('usersTest', 'tests'));
         
     }
         
