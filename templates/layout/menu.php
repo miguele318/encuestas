@@ -46,7 +46,7 @@
                         <ul class="nav navbar-nav ml-auto text-uppercase navbar-right">
                             <li role="presentation" class="nav-item"> <?= $this->html->link('USER ADD ', ['controller'=>'Users', 'action'=>'add','class'=>'nav-link js-scroll-trigger'])?></li>
                             <li role="presentation" class="nav-item"> <?= $this->html->link('USERS LIST', ['controller'=>'Users', 'action'=>'index','class'=>'nav-link js-scroll-trigger'])?></li>
-                            <li role="presentation" class="nav-item"><?= $this->html->link('ADD TEST  ', ['class'=>'nav-link js-scroll-trigger'])?></li>
+                            <li role="presentation" class="nav-item"> <?= $this->html->link('ADD TEST  ', ['controller'=>'UsersTests', 'action'=>'crearEncuesta','class'=>'nav-link js-scroll-trigger'])?></li>
                             <li role="presentation" class="nav-item"> <?= $this->html->link('TESTS LIST ', ['class'=>'nav-link js-scroll-trigger'])?></li>
                             <li role="presentation" class="nav-item"> <?= $this->html->link('LOGOUT', ['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
                             
@@ -54,7 +54,7 @@
                         </ul>
                     <?php else: ?>
                         <ul class="nav navbar-nav ml-auto text-uppercase navbar-right">
-                            <li role="presentation" class="nav-item"><?= $this->html->link('ADD TEST  ', ['class'=>'nav-link js-scroll-trigger'])?></li>
+                        <li role="presentation" class="nav-item"> <?= $this->html->link('ADD TEST  ', ['controller'=>'UsersTests', 'action'=>'crearEncuesta','class'=>'nav-link js-scroll-trigger'])?></li>
                             <li role="presentation" class="nav-item"> <?= $this->html->link('TESTS LIST ', ['class'=>'nav-link js-scroll-trigger'])?></li>
                             <li role="presentation" class="nav-item"> <?= $this->html->link('LOGOUT', ['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
                         </ul>

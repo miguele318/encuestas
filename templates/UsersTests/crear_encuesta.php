@@ -8,18 +8,17 @@ $correosE =[];
 ?>
 
 <?= $this->Html->css('bootstrap/bootstrap.min2.css') ?>
-<<<<<<< HEAD
 <?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
 <?= $this->Html->css('fonts/font-awesome.min.css') ?>
 <?= $this->Html->css('fonts/ionicons.min.css') ?>
 <?= $this->Html->script('bootstrap/bootstrap.min2.js') ?>
 <?= $this->Html->script('jquery/jquery.min2.js') ?>
 <?= $this->Html->script('jquery/jquery.min.js') ?>
-=======
+
 <?= $this->Html->css('fonts/newFonts/font-awesome.min2.css') ?>
 <?= $this->Html->css('fonts/newFonts/ionicons.min2.css') ?>
 <?= $this->Html->css('styleCE.css') ?>
->>>>>>> e65e254e3172f6097cb78567f54c749239e34c8f
+
 <?= $this->Html->css('Navigation-with-Search.css') ?>
 <?= $this->Html->css('Footer-Basic.css') ?>
 
@@ -28,22 +27,23 @@ $correosE =[];
 
 
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<<<<<<< HEAD
-    <title>Crear encuesta</title>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
 </head>
-
 <body>
+<?= $this->fetch('error')?>
 
+    <?= $this->fetch('success')?>
     <script>
 
         $(document).ready(
@@ -101,30 +101,11 @@ $correosE =[];
 
         
         });
-        function verificarUrl(){
-            $.ajax({
-        type: "GET",
-        url:"1234.json",
-        dataType:"json",
-        success:function(response){
-            
-            alert("se encontro el archivo");
-            
-        },
-        error:function(){
-            alert("el archivo no existe");   
-            crearArchivo(cod);
-        } 
-    });   
-}
-
-        }
-       
+    
+    
 
     </script>
-    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-primary navigation-clean-search">
-        <div class="container"><a class="navbar-brand text-left text-white" href="#" style="filter: brightness(116%) contrast(101%);font-size: 30px;"><em>Encuestas</em></a><a class="btn btn-light text-right action-button" role="button" href="#">Cerrar Sesion</a></div>
-    </nav>
+
     <div class="container datos">
         <div class="text-center bg-light" id="info">
             <?= $this->Flash->render('auth') ?>
@@ -135,7 +116,7 @@ $correosE =[];
                 <p></p>
                 <label class="d-inline-flex"><strong>Pagina WEB:  </strong></label>
                 <?=$this->Form->input('url_app', ['id'=>'url', 'class'=>"border rounded form-control-sm", 'type' =>"text", "placeholder" => "Pagina WEB... ", "label" => false, "required"])?>
-                <?=$this->Form->button(('verificar'), ['class'=>"btn btn-primary",  'style'=>"margin: 0 auto;width: 200px;height: 50px;", 'onClick'=>'verificarUrl()'])?>
+    
                 <i class="fa fa-remove"></i>
                 <p></p>
                 <label class="d-inline-flex"><strong>Fecha fin:  </strong></label>
@@ -175,6 +156,5 @@ $correosE =[];
         </footer>
     </div>
     
-</body>
-
-</html>
+    </body>
+    </html>

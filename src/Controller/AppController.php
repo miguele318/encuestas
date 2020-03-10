@@ -77,6 +77,8 @@ $this->Auth->allow(['display']);
         $this->set('current_user', $this->Auth->user());
     }
 
+
+    
     public function isAuthorized($user)
     {
        

@@ -2,7 +2,8 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Model\Entity\Evaluation;
+use App\Model\Table\EvaluationsTable;
+use Cake\Utility\Text;
 
 
 /**
@@ -131,33 +132,54 @@ class UsersTestsController extends AppController
     {
         $this->viewBuilder()->setLayout('menu');
         $usersTest = $this->UsersTests->newEmptyEntity();
-        //$this->loadModel('Evaluation');
+        /*$usersTest->name = 'encuestas de lujo';
+        $usersTest->url_app = 'mercadolibre.com.co';
+        $usersTest->max_date=date("Y-m-d H:i:s");
+        $usersTest->message='esta es la prueba mondaaa';
+        
+        $usersTest->test_id=6;*/
+
+
+
+        
+        
         
         if ($this->request->is('post')) {
             $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
             $usersTest->username = $this->Auth->user('username');
             
+            
             $correos=$this->request->getData('correos');
-            $this->UsersTests->save($usersTest);
+            if ($this->UsersTests->save($usersTest)) {
+                $this->loadModel('Evaluations');
+
             
-            
-                foreach ($correos as $c){
+                //$correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
+                
+    
+                foreach($correos as $c) {
                     
-                    $evaluation->token= String::uuid();
+                    $evaluation = $this->Evaluations->newEmptyEntity();
+                    $evaluation->token=Text::UUID(); 
                     $evaluation->email=$c;
-                    $evaluation->user_test_id=$this->UsersTest('id');
+                    $evaluation->user_test_id= $usersTest->id ;
                     $this->Evaluations->save($evaluation);
 
-                }
+              }
                 
                     
-                //$this->Flash->success(__('The users test has been saved.'));
+                $this->Flash->success(__('la encuesta se ha guardado correctamente.'));
 
-                //return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller'=>'Users', 'action' => 'home']);
+            }else
+            {
+            $this->Flash->error(__('The users test could not be saved. Please, try again.'));
+
             }
-            $tests = $this->UsersTests->Tests->find('list', ['limit' => 200]);
+            
+        }   
+        $tests = $this->UsersTests->Tests->find('list', ['limit' => 200]);
             $this->set(compact('usersTest', 'tests'));
-        
     }
         
         
