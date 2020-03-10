@@ -148,16 +148,29 @@ class UsersTestsController extends AppController
             $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
             $usersTest->username = $this->Auth->user('username');
             
+<<<<<<< HEAD
+=======
+            $correos=$this->request->getData('correos');
+            $this->UsersTests->save($usersTest);
+<<<<<<< HEAD
+            $this->Flash->success(__('The users test has been saved.'));
+=======
+>>>>>>> a8677007118a4cea5b7689d94b4bb6ec7131cc95
             
             $correos=$this->request->getData('correos');
             if ($this->UsersTests->save($usersTest)) {
                 $this->loadModel('Evaluations');
 
             
+<<<<<<< HEAD
                 //$correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
                 
     
                 foreach($correos as $c) {
+=======
+>>>>>>> 318cada9f553ef0339d9e7c92abe0d04c968ee3c
+                foreach ($correos as $c){
+>>>>>>> a8677007118a4cea5b7689d94b4bb6ec7131cc95
                     
                     $evaluation = $this->Evaluations->newEmptyEntity();
                     $evaluation->token=Text::UUID(); 
