@@ -18,7 +18,7 @@
 <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Editar Usuario</title>
 </head>
 <body id="page-top">
 <div class="container">
@@ -28,25 +28,43 @@
             <?= $this->Form->create($user) ?>
 
                 <div class="card-header">
-                    <h3> Edit User  <?= $user->first_name.'  '.$user->last_name  ?> </h3>
+                    <h3> Editar Usuario  <?= $user->first_name.'  '.$user->last_name  ?> </h3>
                 </div>
                 <div class="card-body">
                     <form>
                         <div class="input-group form-group otro_color">
                         <?php if($current_user['username']==$user->username): ?>
                             
-                                <?php
-                                echo $this->Form->control('username', ['class'=>'form-control', 'type'=>'text']);
-                                echo $this->Form->control('first_name', ['class'=> 'form-control']);
-                                echo $this->Form->control('last_name', ['class'=>'form-control']);
-                                echo $this->Form->control('password', ['class'=>'form-control']);
-                                
-                            ?>
+                                    <div>
+                                    <label ><strong> Nombre Usuario  </strong></label>
+                                    <?php
+                                    echo $this->Form->input('username', ['class'=>'form-control', 'type'=>'text']);
+                                    ?>
+                                </div>
+                                <div>
+                                    <label ><strong> Nombre  </strong></label>
+                                    <?php
+                                    echo $this->Form->input('first_name', ['class'=>'form-control']);
+                                    ?>
+                                </div>
+                                <div>
+                                    <label ><strong> Apellido  </strong></label>
+                                    <?php
+                                    echo $this->Form->input('last_name', ['class'=>'form-control']);
+                                    ?>
+                                </div>
+                                <div>
+                                    <label ><strong> Contraseña  </strong></label>
+                                    <?php
+                                    echo $this->Form->input('password', ['class'=>'form-control','value'=>'']);
+                                        ?>
+                                </div>
+						
                             <?php else: ?>
                                 <?php if($current_user['role']=='admin'): ?>
                                     <di id='rol'>
-                                        <?=$this->Form->control('role', [['class'=>'form-control'], 'options'=>['admin'=>'admin', 'user'=>'user']])  ?>
-                                        <?= $this->Form->control('active', ['class'=>'form-control'])?>
+                                        <?=$this->Form->control('role', [['class'=>'form-control'], 'options'=>['admin'=>'Administrador', 'user'=>'UsuarioS']])  ?>
+                                        <?= $this->Form->control('Active', ['class'=>'form-control'])?>
                                 </div>
                                      
                                     
@@ -59,7 +77,7 @@
                         
                         <div class="form-group">
                             
-                            <?= $this->Form->button('Submit', ['class'=>'btn float-right login_btn'])?>
+                            <?= $this->Form->button('Guardar', ['class'=>'btn float-right login_btn'])?>
                         </div>
                     </form>
                 </div>

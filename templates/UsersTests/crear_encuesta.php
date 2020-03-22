@@ -24,23 +24,11 @@ $correosE =[];
 
 <?= $this->Html->script('jquery/jquery.min2.js') ?>     
 <?= $this->Html->script('bootstrap/bootstrap.min2.js') ?>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
-</head>
-<body>
 <?= $this->fetch('error')?>
 
     <?= $this->fetch('success')?>
@@ -112,15 +100,15 @@ $correosE =[];
 			<?= $this->Form->create($usersTest) ?>    
             <div id="datos">
                 <label class="d-inline-flex"><strong>Nombre de la encuesta:  </strong></label>
-                <?=$this->Form->input('name', ['class'=>"border rounded form-control-sm", 'type'=>"text", "placeholder" => "Encuesta... ", "label" => false, "required"])?>
+                <?=$this->Form->input('name', ['class'=>"border rounded form-control", 'type'=>"text"])?>
                 <p></p>
                 <label class="d-inline-flex"><strong>Pagina WEB:  </strong></label>
-                <?=$this->Form->input('url_app', ['id'=>'url', 'class'=>"border rounded form-control-sm", 'type' =>"text", "placeholder" => "Pagina WEB... ", "label" => false, "required"])?>
+                <?=$this->Form->input('url_app', ['id'=>'url', 'class'=>"border rounded form-control", 'type' =>"text"])?>
     
-                <i class="fa fa-remove"></i>
+               
                 <p></p>
                 <label class="d-inline-flex"><strong>Fecha fin:  </strong></label>
-                <?=$this->Form->input('max_date', ['type'=>"date"])?>  
+                <?=$this->Form->input('max_date', ['type'=>'date'])?>  
                 <p></p>
                 <label class="d-inline-flex"><strong>Tipo de test:  </strong></label>
                 <?=$this->Form->control('test_id', ['options' => $tests])  ?>
@@ -129,32 +117,29 @@ $correosE =[];
                 <?=$this->Form->input('message', ['type'=>'textarea', 'class'=>"border rounded form-control-lg", 'autocomplete'=>"on", 'autofocus'=>"", 'spellcheck'=>"true", 'cols'=>"30", 'style'=>"width: 70%;height: 80px;margin: 0 auto;"])?>
                 
 
+                <div>
+                    <p></p><label class="d-inline-flex"><strong>E-mail:&nbsp;&nbsp;</strong></label>
+                    <input id='correo' class="border rounded form-control" type ="text"  label = false>
+                    <button class="btn btn-primary" type="button">Agregar</button>
 
-                <p></p><label class="d-inline-flex"><strong>E-mail:&nbsp;&nbsp;</strong></label>
-                
-                <input  id='correo' class="border rounded form-control-sm" type="text" style="margin: 5px;width: 50%;">
-                <ol id="lstCorreos" class="border rounded form-control-sm" style="margin: 5px;width: 50%;">
-                </ol>
+                    <ol id="lstCorreos" class="border rounded form-control-sm" style="margin: 5px;width: 50%;">
+                    </ol>
+                </div>
 
                                
 
                 <p></p> <?= $this->Form->button(('crear Encuesta'), ['class'=>"btn btn-primary",  'style'=>"margin: 0 auto;width: 200px;height: 50px;", 'onClick'=>'submit()' ]) ?></div>
         </div>
-        <div></div>
-    </div>
-    <div class="border rounded-0 footer-basic">
-        <footer>
-            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
-            <ul class="list-inline">
-                <li class="list-inline-item"><a href="#">Home</a></li>
-                <li class="list-inline-item"><a href="#">Services</a></li>
-                <li class="list-inline-item"><a href="#">About</a></li>
-                <li class="list-inline-item"><a href="#">Terms</a></li>
-                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
-            </ul>
-            <p class="copyright">Encuestas © 2017</p>
-        </footer>
+        
+
+       
     </div>
     
-    </body>
-    </html>
+    
+        <footer>
+    
+            <p class="copyright">Encuestas © 2017</p>
+        </footer>
+    
+    
+    

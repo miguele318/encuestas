@@ -25,7 +25,7 @@ class CreateUsersTests extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('max_date', 'datetime', [
+        $table->addColumn('max_date', 'date', [
             'default' => null,
             'null' => false,
         ]);

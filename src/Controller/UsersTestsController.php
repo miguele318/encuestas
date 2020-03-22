@@ -134,7 +134,7 @@ class UsersTestsController extends AppController
         $usersTest = $this->UsersTests->newEmptyEntity();
         /*$usersTest->name = 'encuestas de lujo';
         $usersTest->url_app = 'mercadolibre.com.co';
-        $usersTest->max_date=date("Y-m-d H:i:s");
+        
         $usersTest->message='esta es la prueba mondaaa';
         
         $usersTest->test_id=6;*/
@@ -147,30 +147,16 @@ class UsersTestsController extends AppController
         if ($this->request->is('post')) {
             $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
             $usersTest->username = $this->Auth->user('username');
-            
-<<<<<<< HEAD
-=======
-            $correos=$this->request->getData('correos');
-            $this->UsersTests->save($usersTest);
-<<<<<<< HEAD
-            $this->Flash->success(__('The users test has been saved.'));
-=======
->>>>>>> a8677007118a4cea5b7689d94b4bb6ec7131cc95
-            
-            $correos=$this->request->getData('correos');
+
+            //$correos=$this->request->getData('correos');
+            //$usersTest->max_date=date("Y-m-d H:i:s")
             if ($this->UsersTests->save($usersTest)) {
                 $this->loadModel('Evaluations');
 
-            
-<<<<<<< HEAD
-                //$correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
+                $correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
                 
     
                 foreach($correos as $c) {
-=======
->>>>>>> 318cada9f553ef0339d9e7c92abe0d04c968ee3c
-                foreach ($correos as $c){
->>>>>>> a8677007118a4cea5b7689d94b4bb6ec7131cc95
                     
                     $evaluation = $this->Evaluations->newEmptyEntity();
                     $evaluation->token=Text::UUID(); 
@@ -186,7 +172,7 @@ class UsersTestsController extends AppController
                 return $this->redirect(['controller'=>'Users', 'action' => 'home']);
             }else
             {
-            $this->Flash->error(__('The users test could not be saved. Please, try again.'));
+            $this->Flash->error(__('ocurrio un error en la encuesta.'));
 
             }
             

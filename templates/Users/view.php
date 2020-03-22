@@ -33,32 +33,32 @@
 					<div class="input-group form-group">
                     <table>
                 <tr class="otro_color">
-                    <th > <?= __('Username :') ?></th>
+                    <th > <?= __('Nombre Usuario :') ?></th>
                     <td><?= h($user->username) ?></td>
                 </tr>
                 <tr class="otro_color">
-                    <th > <?= __('First Name :') ?></th>
+                    <th > <?= __('Nombre :') ?></th>
                     <td><?= h($user->first_name) ?></td>
                 </tr>
                 <tr class="otro_color" >
-                    <th > <?= __('Last Name :') ?></th>
+                    <th > <?= __('Apellidos :') ?></th>
                     <td><?= h($user->last_name) ?></td>
                 </tr>
                 <tr class="otro_color">
-                    <th> <?= __('Role :') ?></th>
+                    <th> <?= __('Tipo Usuario :') ?></th>
                     <td><?= h($user->role) ?></td>
                 </tr>
                 <tr class="otro_color">
-                    <th > <?= __('Create Date :') ?></th>
+                    <th > <?= __('Fecha Creacion :') ?></th>
                     <td><?= h($user->create_date->nice()) ?></td>
                 </tr>
                 <tr class="otro_color">
-                    <th > <?= __('Modified Date :') ?></th>
+                    <th > <?= __('Fecha Modificacion :') ?></th>
                     <td><?= h($user->modified_date->nice()) ?></td>
                 </tr>
                 <tr class="otro_color">
-                    <th > <?= __('Active :') ?></th>
-                    <td><?= $user->active ? __('Yes') : __('No'); ?></td>
+                    <th > <?= __('Activo :') ?></th>
+                    <td><?= $user->active ? __('Si') : __('No'); ?></td>
                 </tr>
             </table>
 						
@@ -66,7 +66,7 @@
 					
 					<div class="form-group">
 						
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->username], ['class'=>'btn float-right login_btn'])?>
+                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $user->username], ['class'=>'btn float-right login_btn'])?>
 					</div>
 				
 			</div>
