@@ -3,143 +3,119 @@
  * @var \App\View\AppView $this
  * 
  */
-$correosE =[];
 
+$this->assign('title', 'Crear Encuesta');
 ?>
-
-<?= $this->Html->css('bootstrap/bootstrap.min2.css') ?>
-<?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
-<?= $this->Html->css('fonts/font-awesome.min.css') ?>
-<?= $this->Html->css('fonts/ionicons.min.css') ?>
-<?= $this->Html->script('bootstrap/bootstrap.min2.js') ?>
-<?= $this->Html->script('jquery/jquery.min2.js') ?>
+<?= $this->Html->script('jquery/jquery.easing.min.js') ?>
 <?= $this->Html->script('jquery/jquery.min.js') ?>
+<?= $this->Html->css('assets/css/styles.min.css') ?>
+<?= $this->Html->script('assets/js/script.min.js') ?>
+<?= $this->Html->css('style.css') ?>
+<?= $this->Html->script('bootstrap/bootstrap.bundle.min.js') ?>
+<?= $this->Html->script('procesoCorreo.js') ?>
 
-<?= $this->Html->css('fonts/newFonts/font-awesome.min2.css') ?>
-<?= $this->Html->css('fonts/newFonts/ionicons.min2.css') ?>
-<?= $this->Html->css('styleCE.css') ?>
+<?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
+<?= $this->Html->script('bootstrap/bootstrap.min.js') ?>
 
-<?= $this->Html->css('Navigation-with-Search.css') ?>
-<?= $this->Html->css('Footer-Basic.css') ?>
 
-<?= $this->Html->script('jquery/jquery.min2.js') ?>     
-<?= $this->Html->script('bootstrap/bootstrap.min2.js') ?>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 
 <!------ Include the above in your HEAD tag ---------->
 
 <?= $this->fetch('error')?>
 
     <?= $this->fetch('success')?>
-    <script>
-
-        $(document).ready(
-            function()
-            {  
-               
-        
-                $("#correo").keypress(
-                    function(e)
-                    { 
-
-                        
-                        
-                       // e.stopPropagation();
-                        var code = e.key; // recommended to use e.key, it's normalized across devices and languages
-                        if(code==="Enter")
-                        {
-                            e.preventDefault();
-                            console.log("Entro a Enter");
-                            regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-                            if(!regex.test($("#correo").val())){
-                                alert('email no es valido');
-                            
-                            }
-                            else{
-                                alert('email valido');
-                                console.log("salió");
-                                
-                                var txt = '<li><input name="correos[]" class="field" style="border:0px" value="'+ $("#correo").val() +'"></li>';
-                            
-                                $("#lstCorreos").append(txt);
-                        
-                                document.getElementById('correo').value='';
-                                e.setkey
-                            }
-
-                            
-
-                            
-                            
-                        }
-                    } // missing closing if brace
-                ); 
-/*
-                $("#correo").on("keyup keydown", function(e)
-                {
-                    console.log("Entro a on");
-                    if(e.key === "Enter")
-                    {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                    }
-                });*/
-
-        
-        });
     
-    
-
-    </script>
-
-    <div class="container datos">
-        <div class="text-center bg-light" id="info">
-            <?= $this->Flash->render('auth') ?>
-			<?= $this->Form->create($usersTest) ?>    
-            <div id="datos">
-                <label class="d-inline-flex"><strong>Nombre de la encuesta:  </strong></label>
-                <?=$this->Form->input('name', ['class'=>"border rounded form-control", 'type'=>"text"])?>
-                <p></p>
-                <label class="d-inline-flex"><strong>Pagina WEB:  </strong></label>
-                <?=$this->Form->input('url_app', ['id'=>'url', 'class'=>"border rounded form-control", 'type' =>"text"])?>
-    
-               
-                <p></p>
-                <label class="d-inline-flex"><strong>Fecha fin:  </strong></label>
-                <?=$this->Form->input('max_date', ['type'=>'date'])?>  
-                <p></p>
-                <label class="d-inline-flex"><strong>Tipo de test:  </strong></label>
-                <?=$this->Form->control('test_id', ['options' => $tests])  ?>
-
-                <p></p><label class="d-inline-flex"><strong>Mensaje para los encuestados:&nbsp;</strong></label>
-                <?=$this->Form->input('message', ['type'=>'textarea', 'class'=>"border rounded form-control-lg", 'autocomplete'=>"on", 'autofocus'=>"", 'spellcheck'=>"true", 'cols'=>"30", 'style'=>"width: 70%;height: 80px;margin: 0 auto;"])?>
-                
-
-                <div>
-                    <p></p><label class="d-inline-flex"><strong>E-mail:&nbsp;&nbsp;</strong></label>
-                    <input id='correo' class="border rounded form-control" type ="text"  label = false>
-                    <button class="btn btn-primary" type="button">Agregar</button>
-
-                    <ol id="lstCorreos" class="border rounded form-control-sm" style="margin: 5px;width: 50%;">
-                    </ol>
+     
+     <body style="background-color: rgb(33,31,31);">
+     <?= $this->Flash->render('auth') ?>
+    <!-- Start: Contact Form v2 (Modal & Full) with Google Map -->
+    <div style="margin: 50px;padding: 20px;">
+        <!-- Start: Full Page Form -->
+        <div class="container-fluid">
+        <?= $this->Form->create($usersTest) ?>   
+            <h1 style="color: rgb(231,236,241);">Crear Encuesta</h1>
+            <hr style="color: rgb(235,190,219);">
+            
+            
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div id="successfail"></div>
+                    </div>
                 </div>
-
-                               
-
-                <p></p> <?= $this->Form->button(('crear Encuesta'), ['class'=>"btn btn-primary",  'style'=>"margin: 0 auto;width: 200px;height: 50px;", 'onClick'=>'submit()' ]) ?></div>
+                <div class="form-row">
+                    <div class="col-12 col-md-6" id="message">
+                        <h2 class="h4" style="color: rgb(247,247,247);">Ingrese informacion de la encuesta</h2>
+                        <div class="form-group"><label for="from-name" style="color: rgb(249,250,251);">Nombre de la encuesta</label><span class="required-input"></span>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-envelope-o"></i></span></div>
+                                <?=$this->Form->input('name', ['class'=>"form-control", 'type'=>"text",  'required'=>"" , 'placeholder'=>"Nombre de encuesta..."])?> </div>
+                        </div>
+                        <div class="form-group"><label for="from-name" style="color: rgb(246,248,249);">Url Pagina web</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-link"></i></span></div>
+                                <div class="input-group-append"></div>
+                                <?=$this->Form->input('url_app', ['class'=>"form-control", 'type'=>"url", 'placeholder'=>"pagina web..."]) ?> </div>
+                        </div>
+                        <div class="form-group"><label for="from-email" style="color: rgb(248,249,251);">Ingresar Correos</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-envelope-o"></i></span></div>
+                                <input class="form-control" type="text" id="correo"  placeholder="Correo..."> </div>
+                        </div><button class="btn btn-primary btn-block" onclick="validateEmail()">Agregar</button>
+                        <div class="form-row">
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                                <div class="form-group"><label for="from-phone" style="color: rgb(245,246,248);">Fecha Fin</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar-check-o"></i></span></div>
+                                        <?=$this->Form->control('max_date', ['type'=>'date', 'class'=>"form-control" ])?> </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-12 col-lg-6">
+                                <div class="form-group"><label for="from-calltime" style="color: rgb(245,246,248);">Tipo Tests</label>
+                                    <!-- Start: Input Group -->
+                                    <div class="input-group">
+                                        <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-sort-desc"></i></span></div>
+                                        <?=$this->Form->control('test_id', [ 'label'=>false, 'class'=>"form-control"])?> </div>
+                                    <!-- End: Input Group -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"><label for="from-comments" style="color: rgb(245,246,248);">Comentario</label>
+                        <?=$this->Form->input('message', ['class'=>"form-control", 'id'=>"from-comments", 'type'=>'textarea', 'placeholder'=>"ingrese comentario...", 'rows'=>"5"])?> </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col">
+                                <?=$this->Form->button('Crear Encuesta', ['class'=>" btn btn-primary btn-block"]) ?>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="d-flex d-md-none">
+                    </div>
+                    <?= $this->Form->end() ?>
+                    <div class="col-12 col-md-6">
+                        <h2 class="h4" style="color: rgb(244,245,247);"><i class="fa fa-envelope"></i>&nbsp;Correos</h2>
+                        <div class="form-row">
+                            <div class="col-sm-6 col-md-12 col-lg-6">
+                                <div></div>
+                                <hr class="d-sm-none">
+                            </div>
+                        </div>
+                        <ul id="lstCorreos" style="color: rgb(255,255,255);">
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+            </form>
         </div>
         
+ 
+    
+</body>
 
-       
-    </div>
-    
-    
-        <footer>
-    
-            <p class="copyright">Encuestas © 2017</p>
-        </footer>
-    
     
     

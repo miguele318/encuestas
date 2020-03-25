@@ -4,17 +4,7 @@
  * @var \App\Model\Entity\Test[]|\Cake\Collection\CollectionInterface $tests
  */
 ?>
-<?= $this->Html->css('fonts/ind/font-awesome.min.css') ?>
-<?= $this->Html->script('inde/script.min.js') ?>
-<?= $this->Html->script('bootstrap/bootstrap.bundle.min.js') ?>
-<?= $this->Html->script('jquery/jquery.easing.min.js') ?>
-<?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
-<?= $this->Html->script('bootstrap/bootstrap.min.js') ?>
-<?= $this->Html->script('jquery/jquery.min.js') ?>
-<?= $this->Html->css('style.css') ?>
-<?= $this->Html->css('styles.min.css') ?>
-<?= $this->Html->script('style_tab') ?>
-<?= $this->Html->script('agency.js') ?>
+
 
 <!DOCTYPE html>
 <html>

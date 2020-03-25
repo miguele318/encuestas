@@ -19,7 +19,7 @@ class EvaluationsFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'email' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
-        'token' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
+        'token' => ['type' => 'string', 'length' => 10, 'null' => false, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
         'state' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'age' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'gender' => ['type' => 'string', 'length' => 1, 'null' => true, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
@@ -50,12 +50,12 @@ class EvaluationsFixture extends TestFixture
             [
                 'id' => 1,
                 'email' => 'Lorem ipsum dolor sit amet',
-                'token' => 'Lorem ipsum dolor sit amet',
+                'token' => 'Lorem ip',
                 'state' => 1,
                 'age' => 1,
                 'gender' => 'L',
                 'location' => 'Lorem ipsum dolor sit amet',
-                'date' => '2020-03-04 04:52:50',
+                'date' => '2020-03-25 07:20:46',
                 'user_test_id' => 1,
             ],
         ];

@@ -3,11 +3,11 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
  */
-
+$this->assign('title', 'Lista Usuarios');
 ?>
 
-<?= $this->Html->css('fonts/ind/font-awesome.min.css') ?>
-<?= $this->Html->script('inde/script.min.js') ?>
+
+
 <?= $this->Html->script('bootstrap/bootstrap.bundle.min.js') ?>
 <?= $this->Html->script('jquery/jquery.easing.min.js') ?>
 <?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
@@ -15,8 +15,8 @@
 <?= $this->Html->script('jquery/jquery.min.js') ?>
 <?= $this->Html->css('style.css') ?>
 <?= $this->Html->css('styles.min.css') ?>
-<?= $this->Html->script('style_tab') ?>
-<?= $this->Html->script('agency.js') ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +26,7 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -58,9 +58,9 @@
                     
                     <th><?= $this->Paginator->sort('Tipo Usuario') ?></th>
                     <th><?= $this->Paginator->sort('Activo') ?></th>
-                    <th>Ver</th>
-                    <th>Editar</th>
-                    <th>Borrar</th>
+                    <th class="title_color">Ver</th>
+                    <th class="title_color">Editar</th>
+                    <th class="title_color">Borrar</th>
                     
                    </thead>
     <tbody>

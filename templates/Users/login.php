@@ -5,7 +5,7 @@
  */
 
  
-
+$this->assign('title', 'Iniciar Sesion');
  
 ?>
 <?= $this->Html->css('bootstrap.min.css') ?>

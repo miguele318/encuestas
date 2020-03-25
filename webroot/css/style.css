@@ -97,6 +97,22 @@ html,body{
         color: black;
 
     }
+    .title_color{
+        color:#428BCA;
+        
+        
+    }
+    #act
+    {
+        color:white;
+
+    }
+    .inpco
+    {
+        background: transparent;
+    border: none;
+    }
+    
 
 
     

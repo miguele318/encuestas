@@ -1,14 +1,5 @@
 
-<?= $this->Html->css('fonts/ind/font-awesome.min.css', ['block' => true]) ?>
-<?= $this->Html->script('inde/script.min.js', ['block' => true]) ?>
-<?= $this->Html->script('bootstrap/bootstrap.bundle.min.js', ['block' => true]) ?>
-<?= $this->Html->script('jquery/jquery.easing.min.js', ['block' => true]) ?>
-<?= $this->Html->css('bootstrap/bootstrap.min.css', ['block' => true]) ?>
-<?= $this->Html->script('bootstrap/bootstrap.min.js', ['block' => true]) ?>
-<?= $this->Html->script('jquery/jquery.min.js', ['block' => true]) ?>
-<?= $this->Html->css('style.css', ['block' => true]) ?>
-<?= $this->Html->script('agency.js', ['block' => true]) ?>
-<?= $this->Html->css('styles.min.css', ['block' => true]) ?>
+
 
 
 <!DOCTYPE html>
@@ -19,11 +10,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title> <?= h($this->fetch('title'))?></title>
     
-    <?= $this->fetch('script') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('error')?>
+    <?= $this->Html->meta('icon') ?>
 
-    <?= $this->fetch('success')?>
+<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+<?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
+<?= $this->Html->script('jquery/jquery.js') ?>
+<?= $this->Html->script('bootstrap/bootstrap.min.js') ?>
+<?= $this->fetch('meta') ?>
+<?= $this->fetch('css') ?>
+<?= $this->fetch('script') ?>
+
 </head>
 
 <body id="page-top">
@@ -40,7 +42,6 @@
         <?php endif; ?>
         <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive" aria-expanded="true" aria-label="Toggle navigation">
             <i class="fa fa-bars">
-
             </i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -68,6 +69,7 @@
         </div>
     </div>
 </nav>
+    <?= $this->Flash->render() ?>
    <?= $this->fetch('content')?>
 </body>
 

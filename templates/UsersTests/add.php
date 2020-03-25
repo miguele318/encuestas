@@ -17,6 +17,7 @@
             <fieldset>
                 <legend><?= __('Add Users Test') ?></legend>
                 <?php
+                    echo $this->Form->control('name');
                     echo $this->Form->control('url_app');
                     echo $this->Form->control('max_date');
                     echo $this->Form->control('message');

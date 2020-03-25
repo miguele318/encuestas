@@ -45,7 +45,7 @@ class CreateEvaluations extends AbstractMigration
             'limit' => 200,
             'null' => true,
         ]);
-        $table->addColumn('date', 'datetime', [
+        $table->addColumn('date', 'date', [
             'default' => null,
             'null' => true,
         ]);

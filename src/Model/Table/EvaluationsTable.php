@@ -72,7 +72,7 @@ class EvaluationsTable extends Table
 
         $validator
             ->scalar('token')
-            ->maxLength('token', 255)
+            ->maxLength('token', 10)
             ->requirePresence('token', 'create')
             ->notEmptyString('token');
 
@@ -95,8 +95,8 @@ class EvaluationsTable extends Table
             ->allowEmptyString('location');
 
         $validator
-            ->dateTime('date')
-            ->allowEmptyDateTime('date');
+            ->date('date')
+            ->allowEmptyDate('date');
 
         return $validator;
     }
