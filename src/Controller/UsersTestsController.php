@@ -6,6 +6,9 @@ use App\Model\Table\EvaluationsTable;
 use Cake\Utility\Text;
 use Cake\I18n\Time;
 use Cake\I18n\Date;
+use Cake\Mailer\Mailer;
+use Cake\Mailer\MailerAwareTrait;
+use Cake\Mailer\Email;
 /**
  * UsersTests Controller
  *
@@ -127,7 +130,7 @@ class UsersTestsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    
+    use MailerAwareTrait;
     public function crearEncuesta()
     {
         $this->viewBuilder()->setLayout('menu');
@@ -137,14 +140,14 @@ class UsersTestsController extends AppController
             
             $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
             $usersTest->username = $this->Auth->user('username');
-           
-            $correos=$this->request->getData('correos');
             
+            $correos=$this->request->getData('correos');
+           
             
             $fech = $this->request->getData('max_date');
             $date = new Date($fech);
             $usersTest->max_date=$date->format('Y-m-d H:i:s');
-            
+            $this->Flash->success(__('la encuesta e.'));
             
             
             
@@ -154,16 +157,25 @@ class UsersTestsController extends AppController
 
                 //$correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
                 
-    
+                $this->Flash->success(__(' correctamente.'));
                 foreach($correos as $c) {
                     
                     $evaluation = $this->Evaluations->newEmptyEntity();
                     $evaluation->token=Text::UUID(); 
                     $evaluation->email=$c;
                     $evaluation->user_test_id= $usersTest->id ;
+                    $this->Flash->success(__('casi prro'));
                     $this->Evaluations->save($evaluation);
+                   
+                
 
               }
+
+              $email= new Email('default');
+              $email ->setFrom(['juanmaza4520@gmail.com'=>'prueba'])
+                     ->setTo('juanmaza4520@gmail.com')
+                     ->setSubject('si funciona ')
+                     ->send('yaaa');
                 
                     
                 $this->Flash->success(__('la encuesta se ha guardado correctamente.'));

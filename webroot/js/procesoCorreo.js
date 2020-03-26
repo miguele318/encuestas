@@ -14,8 +14,9 @@
                                     var txt = '<li><input name="correos[]" class="inpco" readonly="readonly" style="border:0px" value="'+ $("#correo").val() +'"></li>';
                             
                                     $("#lstCorreos").append(txt);
+                                   
                         
-                                    document.getElementById('correo').value='';
+                                   document.getElementById('correo').value='';
 
                                 }
                                 else
@@ -45,6 +46,7 @@
                                         $("#lstCorreos").append(txt);
                     
                                 
+                                        
                                         document.getElementById('correo').value='';
 
                                     }

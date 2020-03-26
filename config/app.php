@@ -206,10 +206,7 @@ return [
     'EmailTransport' => [
         'default' => [
             'className' => MailTransport::class,
-            /*
-             * The keys host, port, timeout, username, password, client and tls
-             * are used in SMTP transports
-             */
+           
             'host' => 'localhost',
             'port' => 25,
             'timeout' => 30,
@@ -222,6 +219,8 @@ return [
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
+        
+        
     ],
 
     /*
@@ -237,6 +236,15 @@ return [
         'default' => [
             'transport' => 'default',
             'from' => 'you@localhost',
+            /*
+             * Will by default be set to config value of App.encoding, if that exists otherwise to UTF-8.
+             */
+            //'charset' => 'utf-8',
+            //'headerCharset' => 'utf-8',
+        ],
+        'gmail' => [
+            'transport' => 'gmail',
+            'from' => 'juanmaza4520@gmail.com',
             /*
              * Will by default be set to config value of App.encoding, if that exists otherwise to UTF-8.
              */

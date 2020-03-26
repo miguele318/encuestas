@@ -65,13 +65,13 @@ $this->assign('title', 'Crear Encuesta');
                             <div class="input-group">
                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-envelope-o"></i></span></div>
                                 <input class="form-control" type="text" id="correo"  placeholder="Correo..."> </div>
-                        </div><button class="btn btn-primary btn-block" onclick="validateEmail()">Agregar</button>
+                        </div><button type="button" onclick="validateEmail()" class="btn btn-primary btn-block" >Agregar</button>
                         <div class="form-row">
                             <div class="col-12 col-sm-6 col-md-12 col-lg-6">
                                 <div class="form-group"><label for="from-phone" style="color: rgb(245,246,248);">Fecha Fin</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-calendar-check-o"></i></span></div>
-                                        <?=$this->Form->control('max_date', ['type'=>'date', 'class'=>"form-control" ])?> </div>
+                                        <?=$this->Form->control('max_date', ['label'=>false, 'type'=>'date', 'class'=>"form-control" ])?> </div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 col-md-12 col-lg-6">
@@ -87,15 +87,19 @@ $this->assign('title', 'Crear Encuesta');
                         <div class="form-group"><label for="from-comments" style="color: rgb(245,246,248);">Comentario</label>
                         <?=$this->Form->input('message', ['class'=>"form-control", 'id'=>"from-comments", 'type'=>'textarea', 'placeholder'=>"ingrese comentario...", 'rows'=>"5"])?> </div>
                         <div class="form-group">
+                        
                             <div class="form-row">
                                 <div class="col">
                                 <?=$this->Form->button('Crear Encuesta', ['class'=>" btn btn-primary btn-block"]) ?>
+                                <?= $this->Form->end() ?>
                                 </div>
                             </div>
+                        
                         </div>
+    
                         <hr class="d-flex d-md-none">
                     </div>
-                    <?= $this->Form->end() ?>
+                    
                     <div class="col-12 col-md-6">
                         <h2 class="h4" style="color: rgb(244,245,247);"><i class="fa fa-envelope"></i>&nbsp;Correos</h2>
                         <div class="form-row">
