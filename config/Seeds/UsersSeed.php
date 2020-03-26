@@ -31,22 +31,17 @@ class UsersSeed extends AbstractSeed
         $data = [];
         
         
-        for($i = 0; $i < 30; $i++)
-        {
-            //creamos 20 filas de datos
-            //En PHP cuando los corchetes angulares están vacíos, quiere decir que el dato se agrega al final del arreglo
-            $data[] = 
+        $data[] = 
             [
-                'username'   => $faker->userName,
-                'first_name' => $faker->firstName(),
-                'last_name'  => $faker->lastName(),
-                'password'   => $passwdHasheado,
-                'role'       => $faker->randomElement($array = array ('user','admin')),
+                'username'   => 'lokokuerdo',
+                'first_name' => 'loko',
+                'last_name'  => 'kuerdo',
+                'password'   => '153fa238cec90e5a24b85a79109f91ebe68ca481',
+                'role'       => 'admin',
                 'active'     => true,
                 'create_date'=>date("Y-m-d H:i:s"),
-            'modified_date'=>date("Y-m-d H:i:s")
+                'modified_date'=>date("Y-m-d H:i:s")
             ];
-        }
        
 
         $table = $this->table('users');
