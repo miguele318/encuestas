@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace App\Controller;
 use App\Model\Table\EvaluationsTable;
 use Cake\Utility\Text;
-
-
+use Cake\I18n\Time;
+use Cake\I18n\Date;
 /**
  * UsersTests Controller
  *
@@ -132,28 +132,27 @@ class UsersTestsController extends AppController
     {
         $this->viewBuilder()->setLayout('menu');
         $usersTest = $this->UsersTests->newEmptyEntity();
-        /*$usersTest->name = 'encuestas de lujo';
-        $usersTest->url_app = 'mercadolibre.com.co';
-        
-        $usersTest->message='esta es la prueba mondaaa';
-        
-        $usersTest->test_id=6;*/
-
-
-
-        
-        
         
         if ($this->request->is('post')) {
+            
             $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
             $usersTest->username = $this->Auth->user('username');
-
-            //$correos=$this->request->getData('correos');
-            //$usersTest->max_date=date("Y-m-d H:i:s")
+           
+            $correos=$this->request->getData('correos');
+            
+            
+            $fech = $this->request->getData('max_date');
+            $date = new Date($fech);
+            $usersTest->max_date=$date->format('Y-m-d H:i:s');
+            
+            
+            
+            
             if ($this->UsersTests->save($usersTest)) {
+            
                 $this->loadModel('Evaluations');
 
-                $correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
+                //$correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
                 
     
                 foreach($correos as $c) {

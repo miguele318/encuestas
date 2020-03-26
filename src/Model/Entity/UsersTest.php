@@ -11,7 +11,7 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $name
  * @property string $url_app
- * @property \Cake\I18n\FrozenTime $max_date
+ * @property \Cake\I18n\FrozenDate $max_date
  * @property string $message
  * @property string $username
  * @property int $test_id

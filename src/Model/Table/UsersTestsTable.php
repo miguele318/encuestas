@@ -65,57 +65,27 @@ class UsersTestsTable extends Table
             ->scalar('name')
             ->maxLength('name', 255)
             ->requirePresence('name', 'create')
-            ->notEmptyString('name', 'campo vacio, rellene este campo');
+            ->notEmptyString('name');
 
         $validator
+            ->scalar('url_app')
+            ->maxLength('url_app', 255)
             ->requirePresence('url_app', 'create')
-                ->notEmpty('url_app', 'campo vacio, rellene este campo')
-                ->add('url_app', 'valid-url', [
-                        'rule' => 'url',
-                        'message' => 'URL No está formateada correctamente'
-                    ])
-                ->add('url_app','userTest',[
-                        'rule'=>  function($url, $context){
-                            // normalize URL format
-                            if (0 !== strpos($url, 'http://') && 0 !== strpos($url, 'https://')) {
-                               $url = "http://{$url}";
-                            }
-                            // check headers against common 4xx,5xx HTTP codes
-                            if($file_headers = get_headers($url)){
-                                $codes = [ 
-                                    '400','401','402','403','404',
-                                    '500','501','502','503','504'
-                                ];
-                                foreach($codes as $code){
-                                    if(true === strpos($file_headers[0], $code)) {
-                                        return false;
-                                    }
-                                }
-                                return true; // passes validation
-                            }
-                            return false;
-                        },
-                        
-                        'message'=>'No podemos llegar al sitio web. vuelva a verificar la URL e intente nuevamente']);
-            
-        $validator
-            ->dateTime('max_date')
-            ->requirePresence('max_date', 'create')
-            ->notEmptyDateTime('max_date', 'campo vacio, rellene este campo');
+            ->notEmptyString('url_app');
+
+      
 
         $validator
             ->scalar('message')
             ->maxLength('message', 250)
             ->requirePresence('message', 'create')
-            ->notEmptyString('message', ' campo vacio, rellene este campo');
+            ->notEmptyString('message');
 
         $validator
             ->scalar('username')
             ->maxLength('username', 50)
             ->requirePresence('username', 'create')
             ->notEmptyString('username');
-
-
 
         return $validator;
     }
