@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad941069420c03d0e2d4b64dc2b7d63f",
+    "content-hash": "4a511a66ce06ef7b8f54f3a2a0647d5c",
     "packages": [
         {
             "name": "aura/intl",
@@ -1285,20 +1285,6 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-04T09:41:09+00:00"
         },
         {
@@ -1375,20 +1361,6 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-24T15:05:31+00:00"
         },
         {
@@ -1731,20 +1703,6 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-03T13:51:17+00:00"
         },
         {
@@ -1802,7 +1760,6 @@
     "packages-dev": [
         {
             "name": "cakephp/bake",
-<<<<<<< HEAD
             "version": "2.0.7",
             "source": {
                 "type": "git",
@@ -1813,18 +1770,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/cakephp/bake/zipball/70ce8c1eb73d91ed40b4455d2607ee33178bba6a",
                 "reference": "70ce8c1eb73d91ed40b4455d2607ee33178bba6a",
-=======
-            "version": "2.0.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cakephp/bake.git",
-                "reference": "d47ec5f0245baba9c8e2eec2ac7f1f28b8c8b9c4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/d47ec5f0245baba9c8e2eec2ac7f1f28b8c8b9c4",
-                "reference": "d47ec5f0245baba9c8e2eec2ac7f1f28b8c8b9c4",
->>>>>>> 15e496b77ffa1c02357972fe34e3674e572b3352
                 "shasum": ""
             },
             "require": {
@@ -1859,11 +1804,7 @@
                 "bake",
                 "cakephp"
             ],
-<<<<<<< HEAD
             "time": "2020-03-24T03:04:03+00:00"
-=======
-            "time": "2020-03-16T19:57:30+00:00"
->>>>>>> 15e496b77ffa1c02357972fe34e3674e572b3352
         },
         {
             "name": "cakephp/cakephp-codesniffer",
@@ -2050,16 +1991,6 @@
                 "dependency",
                 "package"
             ],
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-13T19:34:27+00:00"
         },
         {
@@ -2224,12 +2155,6 @@
             "keywords": [
                 "Xdebug",
                 "performance"
-            ],
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                }
             ],
             "time": "2020-03-01T12:26:26+00:00"
         },
@@ -4417,20 +4342,6 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-14T07:43:07+00:00"
         },
         {
@@ -4831,6 +4742,5 @@
     "platform": {
         "php": ">=7.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }

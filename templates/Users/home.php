@@ -18,10 +18,10 @@ $this->assign('title', 'Inicio');
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-
+<div class="container">
         <h3 class='otro_color'> Bienvenido  <?= $this->Html->link($current_user['first_name'].' '.$current_user['last_name'], ['controller'=>'Users', 'action'=>'view',$current_user['username']]) ?> </h3>    
 
-
+</div>
 
 
 

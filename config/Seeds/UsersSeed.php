@@ -33,10 +33,10 @@ class UsersSeed extends AbstractSeed
         
         $data[] = 
             [
-                'username'   => 'lokokuerdo',
-                'first_name' => 'loko',
-                'last_name'  => 'kuerdo',
-                'password'   => '153fa238cec90e5a24b85a79109f91ebe68ca481',
+                'username'   => 'johel_27',
+                'first_name' => 'joHel',
+                'last_name'  => 'Solis',
+                'password'   => $passwdHasheado,
                 'role'       => 'admin',
                 'active'     => true,
                 'create_date'=>date("Y-m-d H:i:s"),

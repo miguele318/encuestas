@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -13,6 +14,7 @@
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
  */
+
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
@@ -31,38 +33,35 @@ endif;
 $cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
 
-<?= $this->Html->css('bootstrap_princ/bootstrap.min.css') ?>
-<?= $this->Html->css('fonts/font-awesome.min.css') ?>
-<?= $this->Html->script('bootstrap/bootstrap.bundle.min.js') ?>
-<?= $this->Html->script('jquery/jquery.easing.min.js') ?>
-<?= $this->Html->script('bootstrap/bootstrap.min.js') ?>
-<?= $this->Html->script('jquery/jquery.min.js') ?>
-<?= $this->Html->script('script.min.js') ?>
-
 
 <!DOCTYPE html>
 <html>
 
 <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css?h=aad6187964b63c9cf13110b97da94f79">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Home</title>
-    
-    
-    
+
+
+
 </head>
 
 <body id="page-top">
     <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Encuestas S&amp;S</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Encuestas S&amp;S</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
-                <?php if(isset($current_user)): ?>
-                    <li role="presentation" class="nav-item"> <?= $this->html->link('CERRAR SESION', ['controller'=>'Users', 'action'=>'logout','class'=>'nav-link js-scroll-trigger'])?></li>
-                <?php else: ?>
-                    <li class="nav-item nav-link js-scroll-trigger" role="presentation">  <?= $this->Html->link(__('INICIAR SESION'), ['controller'=>'Users', 'action' => 'login', 'class'=>'nav-link js-scroll-trigger']) ?></li>
-                <?php endif;?>
+                    <?php if (isset($current_user)) : ?>
+                        <li role="presentation" class="nav-item nav-link js-scroll-trigger"> <?= $this->Html->link('PRINCIPAL ', ['controller' => 'Users', 'action' => 'home', 'class' => 'nav-link active js-scroll-trigger']) ?></li>
+
+                        <li role="presentation" class="nav-item nav-link js-scroll-trigger"> <?= $this->html->link('CERRAR SESION', ['controller' => 'Users', 'action' => 'logout', 'class' => 'nav-link active js-scroll-trigger']) ?></li>
+                    <?php else : ?>
+                        <li class="nav-item nav-link js-scroll-trigger" role="presentation"> <?= $this->Html->link(__('INICIAR SESION'), ['controller' => 'Users', 'action' => 'login', 'class' => 'nav-link active js-scroll-trigger']) ?></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -73,7 +72,8 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <h1 class="brand-heading">Encuestas S&amp;S</h1>
-                        <p class="intro-text"><br>Realizar encuestas de evaluación de diferentes páginas web.<br><br></p><a class="btn btn-link btn-circle" role="button" href="#about"><i class="fa fa-angle-double-down animated"></i></a></div>
+                        <p class="intro-text"><br>Realizar encuestas de evaluación de diferentes páginas web.<br><br></p><a class="btn btn-link btn-circle" role="button" href="#about"><i class="fa fa-angle-double-down animated"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                 <div class="col-lg-8 mx-auto">
                     <h2>Bienvenidos a Encuestas S&S</h2>
                     <p>Califica diferentes sitios web , para que estos puedan mejorar.</p>
-                    <p>Comparte tu opinión de las paginas web que usas en tu día a día y dí lo que verdaderamente piensas de ellas.</p>    
+                    <p>Comparte tu opinión de las paginas web que usas en tu día a día y dí lo que verdaderamente piensas de ellas.</p>
                 </div>
             </div>
         </div>
@@ -109,8 +109,11 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
             <p>Copyright ©&nbsp;Brand 2020</p>
         </div>
     </footer>
-    
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="js/script.min.js?h=9fd3637c22238480f4d199585a9b2174"></script>
+
 </body>
 
 </html>

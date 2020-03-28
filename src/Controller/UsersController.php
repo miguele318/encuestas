@@ -76,11 +76,11 @@ class UsersController extends AppController
             $user->modified_date=date("Y-m-d H:i:s");
             $user->active=1;
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Usuario ha sido creado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('No se pudo crear el usuario, intente de nuevo.'));
         }
         $this->set(compact('user'));
     }
@@ -101,11 +101,11 @@ class UsersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Se ha editado el usuario correctamente.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('No se pudo editar el usuario, intente de nuevo.'));
         }
         $this->set(compact('user'));
     }
@@ -122,9 +122,9 @@ class UsersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($username);
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success(__('El usuario se ha borrado.'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('No se pudo borrar el usuario, intente de nuevo.'));
         }
 
         return $this->redirect(['action' => 'index']);

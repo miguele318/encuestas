@@ -22,9 +22,9 @@ $this->assign('title', 'Ver Usuario');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>View</title>
-</head>
-<body id="page-top">
+    
+
+
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
@@ -78,8 +78,6 @@ $this->assign('title', 'Ver Usuario');
 		</div>
 	</div>
 </div>
-</body>
-</html>
-            
+   
             
             

@@ -21,7 +21,7 @@ use Cake\Auth\DefaultPasswordHasher;
  * @property \App\Model\Entity\Test[] $tests
  */
 class User extends Entity
-{ 
+{
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
      *
@@ -32,13 +32,13 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'username'=>true,
+        'username' => true,
         'first_name' => true,
         'last_name' => true,
         'password' => true,
         'role' => true,
         'active' => true,
-        'create_date' => false,
+        'create_date' => true,
         'modified_date' => true,
         'tests' => true,
     ];
@@ -51,11 +51,12 @@ class User extends Entity
     protected $_hidden = [
         'password',
     ];
-    
+
     protected function _setPassword($password)
     {
         if (strlen($password) > 0) {
             return (new DefaultPasswordHasher)->hash($password);
         }
     }
+
 }

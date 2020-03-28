@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -42,28 +44,32 @@ class AppController extends Controller
     public function initialize(): void
     {
         parent::initialize();
-        
+
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-    
-        $this->loadComponent('Auth', ['authorize'=> ['Controller'], 'authenticate'=>[ 
-                'Form'=>[
-                    'fields'=>[
-                        'username'=>'username',
-                        'password'=>'password'
-                    ], 
-                    'finder'=>'Auth'
-                        ]
+
+        $this->loadComponent(
+            'Auth',
+            [
+                'authorize' => ['Controller'], 'authenticate' => [
+                    'Form' => [
+                        'fields' => [
+                            'username' => 'username',
+                            'password' => 'password'
+                        ],
+                        'finder' => 'Auth'
+                    ]
                 ],
-                'loginAction'=>['controller'=>'Users', 'action'=> 'login'],
-                'loginRedirect'=>['controller'=>'Users', 'action'=> 'home'], 
-                'unauthorizedRedirect' => $this-> referer()
-]);
+                'loginAction' => ['controller' => 'Users', 'action' => 'login'],
+                'loginRedirect' => ['controller' => 'Users', 'action' => 'home'],
+                'unauthorizedRedirect' => $this->referer()
+            ]
+        );
 
-$this->Auth->allow(['display']);
+        $this->Auth->allow(['display']);
 
-        
+
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
@@ -71,6 +77,12 @@ $this->Auth->allow(['display']);
          */
         //$this->loadComponent('FormProtection');
     }
+    /**
+     * 
+  
+     *
+     * doc comment for function beforeFilter()
+     */
 
     public function beforeFilter(EventInterface $event)
     {
@@ -78,18 +90,18 @@ $this->Auth->allow(['display']);
     }
 
 
-    
+ /**
+     * 
+  
+     *
+     * doc comment for function isAuthorized()
+     */
     public function isAuthorized($user)
     {
-       
-       if(isset($user['role']) and $user['role'] == 'admin')
-       {
-           return true;
 
-       }
-       return false;
-       
-         
+        if (isset($user['role']) and $user['role'] == 'admin') {
+            return true;
+        }
+        return false;
     }
 }
-

@@ -72,7 +72,7 @@ class EvaluationsTable extends Table
 
         $validator
             ->scalar('token')
-            ->maxLength('token', 10)
+            ->maxLength('token', 255)
             ->requirePresence('token', 'create')
             ->notEmptyString('token');
 

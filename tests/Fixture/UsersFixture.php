@@ -15,13 +15,13 @@ class UsersFixture extends TestFixture
      *
      * @var array
      */
-    // @codingStandardsIgnoreStart
+    // phpcs:disable
     public $fields = [
-        'username' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_bin', 'comment' => '', 'precision' => null],
-        'first_name' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_bin', 'comment' => '', 'precision' => null],
-        'last_name' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_bin', 'comment' => '', 'precision' => null],
-        'password' => ['type' => 'string', 'length' => 300, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_bin', 'comment' => '', 'precision' => null],
-        'role' => ['type' => 'string', 'length' => null, 'null' => false, 'default' => null, 'collate' => 'utf8mb4_bin', 'comment' => '', 'precision' => null],
+        'username' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
+        'first_name' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
+        'last_name' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
+        'password' => ['type' => 'string', 'length' => 300, 'null' => false, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
+        'role' => ['type' => 'string', 'length' => null, 'null' => false, 'default' => null, 'collate' => 'utf8_bin', 'comment' => '', 'precision' => null],
         'active' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'create_date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
         'modified_date' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
@@ -30,10 +30,10 @@ class UsersFixture extends TestFixture
         ],
         '_options' => [
             'engine' => 'InnoDB',
-            'collation' => 'utf8mb4_bin'
+            'collation' => 'utf8_bin'
         ],
     ];
-    // @codingStandardsIgnoreEnd
+    // phpcs:enable
     /**
      * Init method
      *
@@ -43,14 +43,14 @@ class UsersFixture extends TestFixture
     {
         $this->records = [
             [
-                'username' => '09138f33-eae5-461a-9507-15c4f7541d44',
+                'username' => '0c2391b3-3a03-4960-9218-eb9f3d08b230',
                 'first_name' => 'Lorem ipsum dolor sit amet',
                 'last_name' => 'Lorem ipsum dolor sit amet',
                 'password' => 'Lorem ipsum dolor sit amet',
                 'role' => 'Lorem ipsum dolor sit amet',
                 'active' => 1,
-                'create_date' => '2020-02-19 17:49:53',
-                'modified_date' => '2020-02-19 17:49:53',
+                'create_date' => '2020-03-28 07:38:04',
+                'modified_date' => '2020-03-28 07:38:04',
             ],
         ];
         parent::init();

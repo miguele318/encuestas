@@ -99,7 +99,6 @@ class UsersTestsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['username']));
         $rules->add($rules->existsIn(['test_id'], 'Tests'));
 
         return $rules;

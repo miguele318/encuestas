@@ -17,9 +17,7 @@ $this->assign('title', 'Lista Usuarios');
 <?= $this->Html->css('styles.min.css') ?>
 
 
-<!DOCTYPE html>
-<html>
-<head>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -28,13 +26,9 @@ $this->assign('title', 'Lista Usuarios');
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title> index User</title>
+   
     
-    
-</head>
-<body id="page-top" >
+
 
     
 
@@ -123,12 +117,10 @@ $this->assign('title', 'Lista Usuarios');
             <?= $this->Paginator->next(__('next') . ' >') ?>
             <?= $this->Paginator->last(__('last') . ' >>') ?>
 </ul>
-<p class='otro_color'><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>       
+<p class='otro_color'><?= $this->Paginator->counter(__('pagina {{page}} of {{pages}}, muestra {{current}} registro(s) de un total de {{count}} registros')) ?></p>       
 
             </div>
             
         </div>
 	</div>
 </div>
-</body>
-                </html>

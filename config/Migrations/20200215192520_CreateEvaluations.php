@@ -22,7 +22,7 @@ class CreateEvaluations extends AbstractMigration
         ]);
         $table->addColumn('token', 'string', [
             'default' => null,
-            'limit' => 10,
+            'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('state', 'integer', [

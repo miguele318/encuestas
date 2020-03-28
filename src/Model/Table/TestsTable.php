@@ -39,14 +39,14 @@ class TestsTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
-        /*$this->hasMany('Questions', [
+        $this->hasMany('Questions', [
             'foreignKey' => 'test_id',
         ]);
         $this->belongsToMany('Users', [
             'foreignKey' => 'test_id',
             'targetForeignKey' => 'user_id',
             'joinTable' => 'users_tests',
-        ]);*/
+        ]);
     }
 
     /**

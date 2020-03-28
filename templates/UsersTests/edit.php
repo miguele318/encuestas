@@ -3,8 +3,6 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\UsersTest $usersTest
  */
-
-
 ?>
 <div class="row">
     <aside class="column">
@@ -24,6 +22,7 @@
             <fieldset>
                 <legend><?= __('Edit Users Test') ?></legend>
                 <?php
+                    echo $this->Form->control('name');
                     echo $this->Form->control('url_app');
                     echo $this->Form->control('max_date');
                     echo $this->Form->control('message');

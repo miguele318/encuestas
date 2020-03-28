@@ -28,7 +28,7 @@ class UsersTestsController extends AppController
         $action=$this->request->getParam('action');
         if(isset($user['role']) and $user['role'] === 'user')
         {
-            if(in_array($action, ['add', 'crearEncuesta', 'view', 'edit', 'delete']))
+            if( in_array($action, ['add', 'crearEncuesta', 'view', 'edit', 'delete']))
             {
                 return true;
 
@@ -46,7 +46,7 @@ class UsersTestsController extends AppController
         ];
         $usersTests = $this->paginate($this->UsersTests);
 
-        $this->set(compact('usersTests'));
+        $this->set( compact ('usersTests', null));
     }
 
     /**
@@ -130,14 +130,15 @@ class UsersTestsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-    use MailerAwareTrait;
+    
     public function crearEncuesta()
     {
         $this->viewBuilder()->setLayout('menu');
         $usersTest = $this->UsersTests->newEmptyEntity();
         
         if ($this->request->is('post')) {
-            
+            $usersTest = $this->UsersTests->newEmptyEntity();
+        
             $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
             $usersTest->username = $this->Auth->user('username');
             
@@ -147,7 +148,6 @@ class UsersTestsController extends AppController
             $fech = $this->request->getData('max_date');
             $date = new Date($fech);
             $usersTest->max_date=$date->format('Y-m-d H:i:s');
-            $this->Flash->success(__('la encuesta e.'));
             
             
             
@@ -157,26 +157,30 @@ class UsersTestsController extends AppController
 
                 //$correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
                 
-                $this->Flash->success(__(' correctamente.'));
+               
                 foreach($correos as $c) {
                     
                     $evaluation = $this->Evaluations->newEmptyEntity();
                     $evaluation->token=Text::UUID(); 
                     $evaluation->email=$c;
                     $evaluation->user_test_id= $usersTest->id ;
-                    $this->Flash->success(__('casi prro'));
                     $this->Evaluations->save($evaluation);
-                   
+                    $mailer = new Mailer('default');
+                    $mailer->setEmailFormat('html')
+                        ->setFrom(['juanmaza4520@gmail.com' => 'administrador encuesta'])
+                        ->setTo($c)
+                        ->setSubject('Invitacion a encuesta')
+                        ->viewBuilder()
+                            ->setTemplate('invitacion')
+                            ->setLayout('default');
+
+                
+                    $mailer->deliver('Hola, ya me di por vencido');
                 
 
               }
 
-              $email= new Email('default');
-              $email ->setFrom(['juanmaza4520@gmail.com'=>'prueba'])
-                     ->setTo('juanmaza4520@gmail.com')
-                     ->setSubject('si funciona ')
-                     ->send('yaaa');
-                
+              
                     
                 $this->Flash->success(__('la encuesta se ha guardado correctamente.'));
 
@@ -191,6 +195,22 @@ class UsersTestsController extends AppController
         $tests = $this->UsersTests->Tests->find('list', ['limit' => 200]);
             $this->set(compact('usersTest', 'tests'));
     }
-        
+
+    public function enviarCorreo()
+    {
+        $mailer = new Mailer('default');
+        $mailer->setEmailFormat('html')
+            ->setFrom(['juanmaza4520@gmail.com' => ' Encuesta S & S'])
+            ->setTo('ivetsjoel@gmail.com')
+            ->setSubject('prueba numero mil uno')
+            ->setViewVars(['url_en'=>'ww.mercadolibre.com','token'=>'1232344555656'])
+            ->viewBuilder()
+                ->setTemplate('invitacion')
+                ->setLayout('default');
+
+    
+        $mailer->deliver();
+
+    }
         
 }

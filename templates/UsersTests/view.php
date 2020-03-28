@@ -3,8 +3,6 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\UsersTest $usersTest
  */
-
-
 ?>
 <div class="row">
     <aside class="column">
@@ -18,8 +16,12 @@
     </aside>
     <div class="column-responsive column-80">
         <div class="usersTests view content">
-            <h3><?= h($usersTest->id) ?></h3>
+            <h3><?= h($usersTest->name) ?></h3>
             <table>
+                <tr>
+                    <th><?= __('Name') ?></th>
+                    <td><?= h($usersTest->name) ?></td>
+                </tr>
                 <tr>
                     <th><?= __('Url App') ?></th>
                     <td><?= h($usersTest->url_app) ?></td>
