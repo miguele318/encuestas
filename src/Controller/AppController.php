@@ -68,6 +68,8 @@ class AppController extends Controller
         );
 
         $this->Auth->allow(['display']);
+        $this->Auth->allow(['controller' => 'Evaluations', 'action' => 'responder_encuesta']);
+        $this->Auth->allow(['controller' => 'Evaluations', 'action' => 'exito']);
 
 
 

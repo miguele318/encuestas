@@ -67,3 +67,24 @@
     
 
     
+        function aggPreguntas  ()
+        {          
+                            
+
+                                var txt = '<li><input name="preguntas[]" class="inpco" readonly="readonly" style="border:0px" value="'+ $("#pregunta").val() +'"></li>';
+                        
+                                $("#lstPreguntas").append(txt);
+                               
+                    
+                               document.getElementById('pregunta').value='';
+
+                            
+    
+
+                        
+
+                        
+                        
+                                        
+
+        }

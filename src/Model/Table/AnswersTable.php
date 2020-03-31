@@ -13,6 +13,7 @@ use Cake\Validation\Validator;
  *
  * @property \App\Model\Table\QuestionsTable&\Cake\ORM\Association\BelongsTo $Questions
  * @property \App\Model\Table\EvaluationsTable&\Cake\ORM\Association\BelongsTo $Evaluations
+ * @property \App\Model\Table\UsersTestsTable&\Cake\ORM\Association\BelongsTo $UsersTests
  *
  * @method \App\Model\Entity\Answer newEmptyEntity()
  * @method \App\Model\Entity\Answer newEntity(array $data, array $options = [])
@@ -52,6 +53,10 @@ class AnswersTable extends Table
             'foreignKey' => 'evaluation_id',
             'joinType' => 'INNER',
         ]);
+        $this->belongsTo('UsersTests', [
+            'foreignKey' => 'user_test_id',
+            'joinType' => 'INNER',
+        ]);
     }
 
     /**
@@ -86,6 +91,7 @@ class AnswersTable extends Table
     {
         $rules->add($rules->existsIn(['question_id'], 'Questions'));
         $rules->add($rules->existsIn(['evaluation_id'], 'Evaluations'));
+        $rules->add($rules->existsIn(['user_test_id'], 'UsersTests'));
 
         return $rules;
     }

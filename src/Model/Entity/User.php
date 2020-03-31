@@ -40,7 +40,6 @@ class User extends Entity
         'active' => true,
         'create_date' => true,
         'modified_date' => true,
-        'tests' => true,
     ];
 
     /**

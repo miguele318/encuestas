@@ -28,6 +28,7 @@ class AnswersTableTest extends TestCase
         'app.Answers',
         'app.Questions',
         'app.Evaluations',
+        'app.UsersTests',
     ];
 
     /**
@@ -52,16 +53,6 @@ class AnswersTableTest extends TestCase
         unset($this->Answers);
 
         parent::tearDown();
-    }
-
-    /**
-     * Test initialize method
-     *
-     * @return void
-     */
-    public function testInitialize(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
     }
 
     /**

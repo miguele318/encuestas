@@ -12,6 +12,22 @@ namespace App\Controller;
  */
 class TestsController extends AppController
 {
+    public function isAuthorized($user)
+    {
+        $action=$this->request->getParam('action');
+        if(isset($user['role']) and $user['role'] === 'user')
+        {
+            if( in_array($action, ['add',  'view', 'index', 'edit', 'delete']))
+            {
+                return true;
+
+            }
+
+        }
+
+        return parent::isAuthorized($user);
+        
+    }
     /**
      * Index method
      *
@@ -19,6 +35,7 @@ class TestsController extends AppController
      */
     public function index()
     {
+        
         $this->viewBuilder()->setLayout('menu');
         $tests = $this->paginate($this->Tests);
 
@@ -35,11 +52,19 @@ class TestsController extends AppController
     public function view($id = null)
     {
         $this->viewBuilder()->setLayout('menu');
+        $this->loadModel('Questions');
         $test = $this->Tests->get($id, [
-            'contain' => ['Users', 'Questions'],
+            'contain' => ['Questions'],
         ]);
 
         $this->set('test', $test);
+
+        $this->paginate = [
+            'conditions' => ['test_id'=>$id],
+        ];
+        $questions = $this->paginate($this->Questions);
+
+        $this->set(compact('questions'));
     }
 
     /**
@@ -49,16 +74,44 @@ class TestsController extends AppController
      */
     public function add()
     {
+        
         $this->viewBuilder()->setLayout('menu');
         $test = $this->Tests->newEmptyEntity();
         if ($this->request->is('post')) {
             $test = $this->Tests->patchEntity($test, $this->request->getData());
             if ($this->Tests->save($test)) {
-                $this->Flash->success(__('The test has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                $preguntas=$this->request->getData('preguntas');
+           
+                
+                if (!empty($preguntas))
+                {                
+                        $this->loadModel('Questions');
+        
+                       
+                        
+                       
+                        foreach($preguntas as $p) {
+                            
+                            $question = $this->Questions->newEmptyEntity();
+                            $question->descripcion=$p;
+                            
+                            $question->test_id= $test->id ;
+                            $this->Questions->save($question);
+                            
+                      }
+        
+                      
+                            
+                    }
+                    
+                
+                    $this->Flash->success(__('El Test se ha guardado correctamente.'));
+        
+
+                return $this->redirect(['controller'=>'Tests', 'action' => 'index']);
             }
-            $this->Flash->error(__('The test could not be saved. Please, try again.'));
+            $this->Flash->error(__('no se ha guardado el Test, intenta de nuevo.'));
         }
         $users = $this->Tests->Users->find('list', ['limit' => 200]);
         $this->set(compact('test', 'users'));
@@ -80,14 +133,14 @@ class TestsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $test = $this->Tests->patchEntity($test, $this->request->getData());
             if ($this->Tests->save($test)) {
-                $this->Flash->success(__('The test has been saved.'));
+                $this->Flash->success(__('El test se ha editado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The test could not be saved. Please, try again.'));
+            $this->Flash->error(__('El test no se ha editado, intente de nuevo.'));
         }
-        //$users = $this->Tests->Users->find('list', ['limit' => 200]);
-        //$this->set(compact('test', 'users'));
+        
+        $this->set(compact('test'));
     }
 
     /**
@@ -103,9 +156,9 @@ class TestsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $test = $this->Tests->get($id);
         if ($this->Tests->delete($test)) {
-            $this->Flash->success(__('The test has been deleted.'));
+            $this->Flash->success(__('El test se ha borrado.'));
         } else {
-            $this->Flash->error(__('The test could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El test no se ha borrado, intente de nuevo.'));
         }
 
         return $this->redirect(['action' => 'index']);

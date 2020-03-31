@@ -24,7 +24,7 @@
 						Hola querido usuario, queremos saber tu experimentada opinion respecto a la pagina <?php echo $url_en?> , para mejorar todo lo posible y prestar un mejor servicio.
 					</p>
 					<div style="width: 100%; margin: 20px auto; display: inline-block; text-align: center; ">
-						<a style="text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db; margin: 0 auto" href="https://www.youtube.com">Ir a la Encuesta</a>
+						<a style="text-decoration: none; border-radius: 5px; padding: 11px 23px; color: white; background-color: #3498db; margin: 0 auto" href="http://localhost/encuestas/evaluations/responder_encuesta/<?php echo $token?>">Ir a la Encuesta</a>
 					</div>
 					<p style="color: #A2A2A2; font-size: 12px; text-align: center; margin: 30px 0 0;">
 						Sitio encuestas Lobos.

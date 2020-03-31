@@ -44,7 +44,7 @@ class UsersTable extends Table
         $this->setPrimaryKey('username');
 
         $this->belongsToMany('Tests', [
-            'foreignKey' => 'user_id',
+            'foreignKey' => 'username',
             'targetForeignKey' => 'test_id',
             'joinTable' => 'users_tests',
         ]);

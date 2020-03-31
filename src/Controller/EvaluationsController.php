@@ -1,8 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
-
+use Cake\Event\EventInterface;
 /**
  * Evaluations Controller
  *
@@ -12,19 +13,43 @@ namespace App\Controller;
  */
 class EvaluationsController extends AppController
 {
+    public function beforeFilter(EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        $this->Auth->allow('responderEncuesta');
+        $this->Auth->allow('exito');
+    }
+    public function isAuthorized($user)
+    {
+        $action=$this->request->getParam('action');
+        if(isset($user['role']) and $user['role'] === 'user')
+        {
+            if( in_array($action, ['exito', 'estadistica', 'responderEncuesta', 'index' ]))
+            {
+                return true;
+
+            }
+
+        }
+
+        return parent::isAuthorized($user);
+        
+    }
     /**
      * Index method
      *
      * @return \Cake\Http\Response|null
      */
-    public function index()
+    public function index($id_test = null)
     {
         $this->paginate = [
-            'contain' => ['UsersTests'],
+            'conditions' => ['user_test_id' => $id_test, 'state' => 1],
         ];
+
         $evaluations = $this->paginate($this->Evaluations);
 
         $this->set(compact('evaluations'));
+        $this->set('id_encuesta', $id_test);
     }
 
     /**
@@ -34,78 +59,146 @@ class EvaluationsController extends AppController
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+  
+
+    public function estadistica($id_test = null)
     {
-        $evaluation = $this->Evaluations->get($id, [
-            'contain' => ['UsersTests', 'Answers'],
-        ]);
+        $male = 0;
 
-        $this->set('evaluation', $evaluation);
-    }
+        $female = 0;
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $evaluation = $this->Evaluations->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $evaluation = $this->Evaluations->patchEntity($evaluation, $this->request->getData());
-            if ($this->Evaluations->save($evaluation)) {
-                $this->Flash->success(__('The evaluation has been saved.'));
+        $promEd = 0;
 
-                return $this->redirect(['action' => 'index']);
+        $promEn = 0;
+        $encu_res = 0;
+
+        $this->paginate = [
+            'conditions' => ['user_test_id' => $id_test, 'state' => 1],
+        ];
+        $evaluations = $this->paginate($this->Evaluations);
+        $encu_res = $evaluations->count();
+
+        if ($encu_res > 0) {
+
+            foreach ($evaluations as $evaluation) {
+                $promEd += ($evaluation->age);
+
+                if (($evaluation->gender) == 'M') {
+                    $male++;
+                } else {
+                    $female++;
+                }
             }
-            $this->Flash->error(__('The evaluation could not be saved. Please, try again.'));
-        }
-        $usersTests = $this->Evaluations->UsersTests->find('list', ['limit' => 200]);
-        $this->set(compact('evaluation', 'usersTests'));
-    }
+            $promEd = ($promEd / $encu_res);
+            $this->paginate = [
+                'conditions' => ['user_test_id' => $id_test],
+            ];
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Evaluation id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $evaluation = $this->Evaluations->get($id, [
+            $evaluations = $this->paginate($this->Evaluations);
+            $promEn = ($encu_res / $evaluations->count()) * 100;
+        }
+        $this->loadModel('UsersTests');
+        $usersTest = $this->UsersTests->get($id_test, [
             'contain' => [],
         ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $evaluation = $this->Evaluations->patchEntity($evaluation, $this->request->getData());
-            if ($this->Evaluations->save($evaluation)) {
-                $this->Flash->success(__('The evaluation has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The evaluation could not be saved. Please, try again.'));
-        }
-        $usersTests = $this->Evaluations->UsersTests->find('list', ['limit' => 200]);
-        $this->set(compact('evaluation', 'usersTests'));
+        $this->loadModel('Tests');
+        $test = $this->Tests->get($usersTest->test_id, [
+            'contain' => ['Questions'],
+        ]);
+        $questions = $test['questions'];
+
+        $this->set('questions', $questions);
+
+        $estadista =
+            [
+                'male' => $male,
+                'female'  => $female,
+                'numres' => $encu_res,
+                'promed'   => $promEd,
+                'promen'   => $promEn
+
+            ];
+        $this->loadModel('Answers');
+
+        $this->paginate = [
+            'conditions' => ['user_test_id' => $id_test],
+        ];
+        $answers = $this->paginate($this->Answers);
+        $this->set(compact('answers', $answers));
+
+
+        $this->set(compact('estadista', $estadista));
+        $this->set('id_encuesta', $id_test);
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Evaluation id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $evaluation = $this->Evaluations->get($id);
-        if ($this->Evaluations->delete($evaluation)) {
-            $this->Flash->success(__('The evaluation has been deleted.'));
-        } else {
-            $this->Flash->error(__('The evaluation could not be deleted. Please, try again.'));
-        }
 
-        return $this->redirect(['action' => 'index']);
+    public function responderEncuesta($token = null)
+    {
+
+        $this->paginate = [
+            'conditions' => ['token' => $token],
+        ];
+        $evaluation = $this->paginate($this->Evaluations);
+
+        $evaluation = $evaluation->first();
+        $id = $evaluation->user_test_id;
+
+
+        $this->loadModel('UsersTests');
+        $usersTest = $this->UsersTests->get($id, [
+            'contain' => [],
+        ]);
+
+        $this->loadModel('Tests');
+        $test = $this->Tests->get($usersTest->test_id, [
+            'contain' => ['Questions'],
+        ]);
+        $questions = $test['questions'];
+        $this->set(compact('usersTest'));
+        $this->set(compact('evaluation'));
+        $this->set('questions', $questions);
+
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            
+            $evaluation = $this->Evaluations->patchEntity($evaluation, $this->request->getData());
+            $evaluation->state = 1;
+            $evaluation->date=date("Y-m-d H:i:s");
+            if ($this->Evaluations->save($evaluation)) {
+                $num = 1;
+                foreach ($questions as $quetion) {
+                    $preguna = $this->request->getData('respuesta_'. $num);
+                    $this->loadModel('Answers');
+                    $answer = $this->Answers->newEmptyEntity();
+                    $answer->user_test_id = $id;
+                    $answer->question_id = $quetion->id;
+                    $answer->evaluation_id = $evaluation->id;
+                    $answer->value = $preguna;
+
+                    if ($this->Answers->save($answer))
+                    {
+
+                        
+                        
+
+                    }else{
+                        $this->Flash->error(__('por favor complete la encuesta.'));
+
+                    }
+
+                    $num++;
+                }
+                return $this->redirect(['controller'=>'Evaluations', 'action' => 'exito']);
+                
+            }else{
+                $this->Flash->error(__('por favor complete la encuesta.'));
+            }
+        }
+    }
+
+    public function exito()
+    {
+
     }
 }

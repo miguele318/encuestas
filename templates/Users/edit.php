@@ -5,26 +5,17 @@
  */
 $this->assign('title', 'Editar Usuario');
 ?>
-<?= $this->Html->script('jquery/jquery.min.js') ?>
-<?= $this->Html->script('bootstrap/bootstrap.bundle.min.js') ?>
-<?= $this->Html->script('jquery/jquery.easing.min.js') ?>
-<?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
-<?= $this->Html->script('bootstrap/bootstrap.min.js') ?>
 
 <?= $this->Html->css('style.css') ?>
 
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 
    
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
-		<div class="card">
+		<div class="card" style="height: 470px;">
         
             <?= $this->Form->create($user) ?>
 
@@ -32,8 +23,8 @@ $this->assign('title', 'Editar Usuario');
                     <h3> Editar Usuario  <?= $user->first_name.'  '.$user->last_name  ?> </h3>
                 </div>
                 <div class="card-body">
-                    <form>
-                        <div class="input-group form-group otro_color">
+                    
+                        <div class="form-group otro_color">
                         <?php if($current_user['username']==$user->username): ?>
                             
                                     <div>
@@ -85,7 +76,7 @@ $this->assign('title', 'Editar Usuario');
                             
                             <?= $this->Form->button('Guardar', ['class'=>'btn float-right login_btn'])?>
                         </div>
-                    </form>
+                    
                 </div>
                 <?= $this->Form->end() ?>
                 

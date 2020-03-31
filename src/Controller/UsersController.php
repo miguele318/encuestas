@@ -103,7 +103,7 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Se ha editado el usuario correctamente.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'home']);
             }
             $this->Flash->error(__('No se pudo editar el usuario, intente de nuevo.'));
         }
@@ -121,6 +121,7 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($username);
+        
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('El usuario se ha borrado.'));
         } else {

@@ -34,6 +34,7 @@ class Question extends Entity
      * @var array
      */
     protected $_accessible = [
+        'id' =>true,
         'descripcion' => true,
         'test_id' => true,
         'test' => true,

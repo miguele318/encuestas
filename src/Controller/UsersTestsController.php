@@ -28,7 +28,7 @@ class UsersTestsController extends AppController
         $action=$this->request->getParam('action');
         if(isset($user['role']) and $user['role'] === 'user')
         {
-            if( in_array($action, ['add', 'crearEncuesta', 'view', 'edit', 'delete']))
+            if( in_array($action, ['add', 'crearEncuesta', 'view', 'index', 'edit', 'delete']))
             {
                 return true;
 
@@ -41,6 +41,7 @@ class UsersTestsController extends AppController
     }
     public function index()
     {
+        $this->viewBuilder()->setLayout('menu');
         $this->paginate = [
             'conditions' => ['username'=>$this->Auth->user('username')],
         ];
@@ -58,11 +59,20 @@ class UsersTestsController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('menu');
+        $this->loadModel('Evaluations');
         $usersTest = $this->UsersTests->get($id, [
             'contain' => ['Tests'],
         ]);
 
         $this->set('usersTest', $usersTest);
+
+        $this->paginate = [
+            'conditions' => ['user_test_id'=>$id],
+        ];
+        $evaluations = $this->paginate($this->Evaluations);
+
+        $this->set(compact('evaluations'));
     }
 
     /**
@@ -70,21 +80,7 @@ class UsersTestsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
-    {
-        $usersTest = $this->UsersTests->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
-            if ($this->UsersTests->save($usersTest)) {
-                $this->Flash->success(__('The users test has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The users test could not be saved. Please, try again.'));
-        }
-        $tests = $this->UsersTests->Tests->find('list', ['limit' => 200]);
-        $this->set(compact('usersTest', 'tests'));
-    }
+   
 
     /**
      * Edit method
@@ -95,17 +91,20 @@ class UsersTestsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->viewBuilder()->setLayout('menu');
+
         $usersTest = $this->UsersTests->get($id, [
-            'contain' => [],
+            'contain' => ['Tests'],
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $usersTest = $this->UsersTests->patchEntity($usersTest, $this->request->getData());
             if ($this->UsersTests->save($usersTest)) {
-                $this->Flash->success(__('The users test has been saved.'));
+                $this->Flash->success(__('La encuesta se ha editado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The users test could not be saved. Please, try again.'));
+            $this->Flash->error(__('No se pudo editar la encuesta, intente de nuevo.'));
         }
         $tests = $this->UsersTests->Tests->find('list', ['limit' => 200]);
         $this->set(compact('usersTest', 'tests'));
@@ -123,9 +122,9 @@ class UsersTestsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $usersTest = $this->UsersTests->get($id);
         if ($this->UsersTests->delete($usersTest)) {
-            $this->Flash->success(__('The users test has been deleted.'));
+            $this->Flash->success(__('La encuesta ha sido borrada.'));
         } else {
-            $this->Flash->error(__('The users test could not be deleted. Please, try again.'));
+            $this->Flash->error(__('No se pudo borrar la encuesta, intente de nuevo.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -150,67 +149,62 @@ class UsersTestsController extends AppController
             $usersTest->max_date=$date->format('Y-m-d H:i:s');
             
             
+            if (!empty($correos))
+            {
+                if ($this->UsersTests->save($usersTest)) {
             
-            if ($this->UsersTests->save($usersTest)) {
-            
-                $this->loadModel('Evaluations');
-
-                //$correos= array("juanito@gmail.com", "carlos@unicauca.edu.co", "santiagos@yahoo.es");
-                
-               
-                foreach($correos as $c) {
+                    $this->loadModel('Evaluations');
+    
+                   
                     
-                    $evaluation = $this->Evaluations->newEmptyEntity();
-                    $evaluation->token=Text::UUID(); 
-                    $evaluation->email=$c;
-                    $evaluation->user_test_id= $usersTest->id ;
-                    $this->Evaluations->save($evaluation);
-                    $mailer = new Mailer('default');
-                    $mailer->setEmailFormat('html')
-                        ->setFrom(['juanmaza4520@gmail.com' => 'administrador encuesta'])
-                        ->setTo($c)
-                        ->setSubject('Invitacion a encuesta')
-                        ->viewBuilder()
-                            ->setTemplate('invitacion')
-                            ->setLayout('default');
-
-                
-                    $mailer->deliver('Hola, ya me di por vencido');
-                
-
-              }
-
-              
+                   
+                    foreach($correos as $c) {
+                        
+                        $evaluation = $this->Evaluations->newEmptyEntity();
+                        $evaluation->token=Text::UUID(); 
+                        $evaluation->email=$c;
+                        $evaluation->user_test_id= $usersTest->id ;
+                        $this->Evaluations->save($evaluation);
+                        $mailer = new Mailer('default');
+                        $mailer->setEmailFormat('html')
+                            ->setFrom(['juanmaza4520@gmail.com' => ' Encuesta S & S'])
+                            ->setTo($c)
+                            ->setSubject('Invitacion a encuesta')
+                            ->setViewVars(['url_en'=>$evaluation->url_app, 'token'=>$evaluation->token])
+                            ->viewBuilder()
+                                ->setTemplate('invitacion')
+                                ->setLayout('default');
+    
                     
-                $this->Flash->success(__('la encuesta se ha guardado correctamente.'));
+                        $mailer->deliver();
+                    
+    
+                  }
+    
+                  
+                        
+                    $this->Flash->success(__('la encuesta se ha guardado correctamente.'));
+    
+                    return $this->redirect(['action' => 'index']);
+                }else
+                {
+                $this->Flash->error(__('no se ha guardado la encuesta, intenta de nuevo.'));
+    
+                }
+                
 
-                return $this->redirect(['controller'=>'Users', 'action' => 'home']);
             }else
             {
-            $this->Flash->error(__('ocurrio un error en la encuesta.'));
+                $this->Flash->error(__('no se ha guardado la encuesta, faltan los correos .'));
 
             }
+            
             
         }   
         $tests = $this->UsersTests->Tests->find('list', ['limit' => 200]);
             $this->set(compact('usersTest', 'tests'));
     }
-
-    public function enviarCorreo()
-    {
-        $mailer = new Mailer('default');
-        $mailer->setEmailFormat('html')
-            ->setFrom(['juanmaza4520@gmail.com' => ' Encuesta S & S'])
-            ->setTo('ivetsjoel@gmail.com')
-            ->setSubject('prueba numero mil uno')
-            ->setViewVars(['url_en'=>'ww.mercadolibre.com','token'=>'1232344555656'])
-            ->viewBuilder()
-                ->setTemplate('invitacion')
-                ->setLayout('default');
-
-    
-        $mailer->deliver();
-
-    }
+   
+   
         
 }

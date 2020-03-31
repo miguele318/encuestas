@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Migrations\AbstractMigration;
 
-class CreateAnswers extends AbstractMigration
+class CreateAnswer extends AbstractMigration
 {
     /**
      * Change Method.
@@ -22,8 +22,11 @@ class CreateAnswers extends AbstractMigration
         ]);
         $table->addColumn('question_id','integer',["limit"=>11]);
         $table->addColumn('evaluation_id','integer',["limit"=>11]);
+        $table->addColumn('user_test_id','integer',["limit"=>11]);
+        $table->addForeignKey("user_test_id","users_tests","id",["delete"=> "CASCADE", "update"=>"CASCADE"]);
         $table->addForeignKey("question_id","questions","id",["delete"=> "CASCADE", "update"=>"CASCADE"]);
         $table->addForeignKey("evaluation_id","evaluations","id",["delete"=> "CASCADE", "update"=>"CASCADE"]);
         $table->create();
+        
     }
 }

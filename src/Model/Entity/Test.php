@@ -30,6 +30,6 @@ class Test extends Entity
         'name' => true,
         'description' => true,
         'questions' => true,
-        //'users' => true,
+        'users' => true,
     ];
 }

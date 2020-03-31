@@ -1,35 +1,17 @@
-<?php 
+<?php
 $this->assign('title', 'Inicio');
 ?>
-
-<?= $this->Html->script('jquery/jquery.min.js') ?>
-<?= $this->Html->script('bootstrap/bootstrap.bundle.min.js') ?>
-<?= $this->Html->script('jquery/jquery.easing.min.js') ?>
-<?= $this->Html->css('bootstrap/bootstrap.min.css') ?>
-<?= $this->Html->script('bootstrap/bootstrap.min.js') ?>
 <?= $this->Html->css('style.css') ?>
-<?= $this->Html->css('styles.min.css') ?>
 
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-<div class="container">
-        <h3 class='otro_color'> Bienvenido  <?= $this->Html->link($current_user['first_name'].' '.$current_user['last_name'], ['controller'=>'Users', 'action'=>'view',$current_user['username']]) ?> </h3>    
-
-</div>
+<?= $this->Flash->render() ?>
+    <header class="masthead">
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in"><span>Bienvenido <?= $this->Html->link($current_user['first_name'] . ' ' . $current_user['last_name'], ['controller' => 'Users', 'action' => 'view', $current_user['username']], ['class' => 'title_color']) ?></span></div>
+                <div class="intro-heading text-uppercase"><span>Listo para ayudarnos a mejorar</span></div><?= $this->html->link(__('Agregar Encuesta'), ['controller' => 'UsersTests', 'action' => 'crearEncuesta'], ['class' => "btn btn-primary btn-xl text-uppercase js-scroll-trigger", 'role' => "button", 'style' => 'background-color : rgb(54,134,254);']) ?>
+            </div>
 
 
-
-
-
-
-
-
-
-
-
+        </div>
+    </header>

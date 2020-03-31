@@ -44,7 +44,7 @@ class TestsTable extends Table
         ]);
         $this->belongsToMany('Users', [
             'foreignKey' => 'test_id',
-            'targetForeignKey' => 'user_id',
+            'targetForeignKey' => 'username',
             'joinTable' => 'users_tests',
         ]);
     }
